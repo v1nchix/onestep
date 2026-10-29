@@ -269,7 +269,7 @@ dialog[open]{animation:pop .35s cubic-bezier(.2,.9,.25,1.1)}
 @keyframes tgring{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.9);opacity:0}}
 
 /* окно таблицы: слева «как это работает» и слайды, справа заказ и оплата */
-dialog.pm{width:min(1060px,calc(100% - 32px));max-height:calc(100dvh - 32px);border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
+dialog.pm{width:min(1060px,calc(100% - 32px));max-height:calc(100dvh - 32px);border-radius:36px;overflow:hidden;flex-direction:column}
 dialog.pm[open]{display:flex}
 .pm-x{position:absolute;top:16px;right:16px;z-index:3;width:44px;height:44px;border-radius:50%;background:var(--paper);font-size:24px;line-height:1}
 .pm-grid{display:grid;grid-template-columns:1.2fr .8fr;overflow:auto;flex:1}
