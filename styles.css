@@ -844,3 +844,13 @@ html:not(.js) .stairs4 i:nth-child(1){height:30px}html:not(.js) .stairs4 i:nth-c
 .js .final4:not(.in) .stairs3 .arrow{opacity:0;transform:scale(.3)}
 @media (max-width:700px){.stairs3{height:150px;margin-top:40px}}
 @media (prefers-reduced-motion:reduce){.stairs3 *{transition:none!important}}
+
+/* ===== «узнаёшь себя?»: боль перечёркивается, появляется ответ ===== */
+.pain-list b{position:relative;display:inline-block}
+.pain-list b::after{content:"";position:absolute;left:-2%;right:-2%;top:55%;height:2px;border-radius:2px;background:var(--ink);transform-origin:left;transition:transform .5s cubic-bezier(.7,0,.3,1) .5s}
+.pain-list .sol{display:block;margin-top:12px;font-style:normal;font-weight:700;color:var(--green);transition:opacity .4s ease .95s,transform .4s ease .95s}
+.js .pain-list li:not(.in) b::after{transform:scaleX(0);transition:none}
+.js .pain-list li:not(.in) .sol{opacity:0;transform:translateY(8px);transition:none}
+.pain-list li:nth-child(2) b::after{transition-delay:.9s}.pain-list li:nth-child(2) .sol{transition-delay:1.35s}
+.pain-list li:nth-child(3) b::after{transition-delay:1.3s}.pain-list li:nth-child(3) .sol{transition-delay:1.75s}
+@media (prefers-reduced-motion:reduce){.pain-list b::after,.pain-list .sol{transition:none}}
