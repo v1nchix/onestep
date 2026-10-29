@@ -3,8 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>OneStep: Google Таблицы для привычек, целей и денег</title>
-<meta name="description" content="Готовые Google Таблицы OneStep: трекер привычек, цели на год, учёт финансов, планер и финмодель для бизнеса. Работают с телефона, с инструкцией.">
+<title>Готовые Google Таблицы для привычек, целей и финансов | OneStep</title>
+<link rel="canonical" href="https://onestep-sheets.ru/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OneStep: готовые Google Таблицы для привычек, целей и денег">
+<meta property="og:description" content="Трекер привычек, цели на год, учёт финансов, планер и финмодель. Отмечаешь, что сделал, а прогресс таблица считает сама. От 499 ₽, без подписки.">
+<meta property="og:image" content="https://onestep-sheets.ru/img/habits.webp">
+<meta property="og:locale" content="ru_RU">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "OneStep", "url": "https://onestep-sheets.ru/", "sameAs": ["https://t.me/onestep_sheets"]}</script>
+<meta name="description" content="Готовые Google Таблицы OneStep: трекер привычек, цели на год, учёт финансов, планер на месяц и финмодель для бизнеса. Работают с телефона, инструкция внутри. От 499 ₽, без подписки.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F3F8F4">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23247B68'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -12,479 +19,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="shared.js"></script>
-<style>
-:root{
-  --paper:#F3F8F4; --white:#FFFFFF; --ink:#1E4A3D; --ink-2:#2F6152; --muted:#557366;
-  --green:#247B68; --green-d:#1B5F50; --rule:#DDEAE2; --margin:#F2B8A8;
-  --p1:#C9EEDB; --p2:#DDEFC4; --p3:#BFE6E0; --p4:#EAF3B5; --p5:#D4E9F0; --p6:#FBE2D5;
-  --f:'Onest',system-ui,sans-serif; --wrap:1180px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
-p,li,summary{text-wrap:pretty}
-.btn,button,a,summary{touch-action:manipulation}
-.btn,button,summary{-webkit-user-select:none;user-select:none}
-body{background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit}
-img{display:block;max-width:100%}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:12px}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.04}
-h2{font-size:clamp(32px,4.4vw,54px);text-align:center}
-.sub{max-width:560px;margin:16px auto 0;text-align:center;color:var(--muted);font-size:18px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 30px;border-radius:100px;font-weight:600;font-size:17px;text-decoration:none;transition:transform .15s,background .2s,box-shadow .2s;white-space:nowrap}
-.btn:active{transform:scale(.97)}
-.btn-g{background:var(--green);color:#fff;box-shadow:0 10px 24px -10px rgba(36,123,104,.7)}
-.btn-w{background:var(--white);color:var(--ink);box-shadow:0 0 0 1.5px var(--rule)}
-
-/* подарок */
-.gift{background:var(--green);color:#fff;font-size:15px}
-.gift .wrap{display:flex;align-items:center;justify-content:center;gap:10px;min-height:44px;text-align:center}
-.gift svg{width:20px;height:20px;flex:none;animation:wiggle 3.2s ease-in-out infinite;transform-origin:50% 80%}
-.gift a{font-weight:700;color:#fff;text-underline-offset:3px;white-space:nowrap}
-@keyframes wiggle{0%,82%,100%{transform:rotate(0)}86%{transform:rotate(-12deg)}90%{transform:rotate(10deg)}94%{transform:rotate(-6deg)}}
-
-/* шапка */
-/* шапка-пилюля, как у structured.app */
-.top{position:sticky;top:12px;z-index:30;padding:0 24px;margin-top:20px}
-.top .wrap{display:flex;align-items:center;gap:30px;height:66px;max-width:calc(var(--wrap) - 48px);padding:0 9px 0 20px;border-radius:100px;
-  background:rgba(28,104,87,.86);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 0 0 1px rgba(255,255,255,.12),0 10px 24px -16px rgba(16,37,30,.5);color:#fff}
-.top .logo i{background:#fff}
-.top .logo i::after{border-color:var(--green)}
-.top nav a{color:rgba(255,255,255,.9)!important;transition:color .2s}
-.top .btn{background:#fff;color:var(--green-d);box-shadow:0 6px 16px -8px rgba(10,40,30,.6)}
-.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:21px;letter-spacing:-.02em;text-decoration:none}
-.logo i{width:30px;height:30px;border-radius:9px;background:var(--green);display:grid;place-items:center}
-.logo i::after{content:"";width:8px;height:14px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-2px)}
-.top nav{display:flex;gap:26px;margin-left:auto;font-weight:500;font-size:16px}
-.top nav a{text-decoration:none;color:var(--ink-2)}
-.top .btn{height:48px;padding:0 24px;font-size:16px}
-
-/* первый экран: лист блокнота */
-.hero{position:relative;padding:120px 0 40px;overflow:hidden;
-  background-image:repeating-linear-gradient(var(--paper) 0 47px,#E8F0EB 47px 48px)}
-.hero .wrap{position:relative;text-align:center}
-.hero h1{font-size:clamp(38px,5.2vw,70px);line-height:1.34;max-width:11ch;margin:0 auto}
-/* слоган: «не мотивация» зачёркнута, у «системы» галочка и мятное выделение */
-.hero h1 .no{position:relative;display:inline-block;color:#9DB5AB}
-.hero h1 .no::after{content:"";position:absolute;left:-3%;right:-3%;top:54%;height:.08em;border-radius:1em;background:var(--ink);transform-origin:left}
-.hero h1 .sysw{display:inline-block;white-space:nowrap;color:var(--green);line-height:1;padding:.04em .14em .1em;border-radius:.16em;background:linear-gradient(var(--p1),var(--p1)) left/100% 100% no-repeat}
-.hero h1 .ck{display:inline-block;position:relative;width:.72em;height:.72em;margin-right:.16em;vertical-align:-.02em;border-radius:.2em;background:var(--green)}
-.hero h1 .ck svg{position:absolute;inset:18%;width:64%;height:64%;overflow:visible}
-.hero h1 .ck path{fill:none;stroke:#fff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
-.hero .lead{max-width:520px;margin:36px auto 0;font-size:20px;line-height:1.6;color:var(--ink-2)}
-.hero .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:48px}
-
-/* под кнопками и фон за текстом */
-.perks{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin-top:28px;font-weight:500;font-size:16px;color:var(--ink-2)}
-.perks li{display:flex;align-items:center;gap:10px}
-.perks li::before{content:"";width:22px;height:22px;border-radius:7px;flex:none;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4L18 8' fill='none' stroke='%23fff' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
-.lead{text-wrap:balance}
-.intro{position:relative;z-index:0}
-.intro::before{content:"";position:absolute;inset:-60px -80px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse closest-side,var(--paper) 70%,rgba(243,248,244,0))}
-
-/* телефон и пузыри */
-.scene{position:relative;height:620px;margin-top:110px}
-.phone{position:absolute;left:50%;top:0;transform:translateX(-50%);width:300px;height:610px;border-radius:48px;background:#2A5A4B;padding:7px;box-shadow:0 0 0 1px rgba(30,74,61,.08),0 28px 56px -30px rgba(30,74,61,.35)}
-.screen{height:100%;border-radius:41px;background:var(--white);overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:46px 20px 20px;position:relative}
-.screen::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:90px;height:24px;border-radius:20px;background:#2A5A4B}
-.scr-t{font-weight:700;font-size:17px}
-.scr-s{font-size:13px;color:var(--muted)}
-.ring{position:relative;width:150px;aspect-ratio:1;margin:18px 0 16px}
-.ring svg{display:block;width:100%;height:100%;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:10}
-.ring .bg{stroke:#E8F1EC}
-.ring .fg{stroke:var(--green);stroke-linecap:round;stroke-dasharray:100 100;stroke-dashoffset:100}
-.ring .in{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
-.ring b{font-size:38px;font-weight:800;line-height:1;letter-spacing:-.03em}
-.ring small{font-size:12px;color:var(--muted);margin-top:4px}
-.habits{list-style:none;width:100%;display:grid;gap:8px}
-.habits li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--paper);font-size:14px;font-weight:500}
-.habits li span{margin-left:auto;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.chk{width:22px;height:22px;border-radius:7px;border:2px solid #B9D3C8;flex:none;display:grid;place-items:center;transition:background .3s,border-color .3s}
-.chk.on{background:var(--green);border-color:var(--green)}
-.chk.on::after{content:"";width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
-.bub{position:absolute;display:flex;align-items:center;gap:10px;padding:12px 18px 12px 12px;border-radius:100px;font-weight:600;font-size:15px;white-space:nowrap;box-shadow:0 14px 30px -18px rgba(30,74,61,.5)}
-.bub i{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.75);display:grid;place-items:center;flex:none}
-.bub i svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.bub small{display:block;font-weight:500;font-size:12px;color:var(--ink-2);opacity:.8}
-.b1{background:var(--p1);left:calc(50% - 470px);top:40px}
-.b2{background:var(--p4);left:calc(50% - 400px);top:220px}
-.b3{background:var(--p5);left:calc(50% - 460px);top:400px}
-.b4{background:var(--p2);left:calc(50% + 200px);top:70px}
-.b5{background:var(--p3);left:calc(50% + 250px);top:260px}
-.b6{background:var(--p3);left:calc(50% + 190px);top:440px}
-.b7{background:#D6EBD9}.b8{background:var(--p1)}.b9{background:var(--p6)}.b10{background:var(--p2)}
-.b7,.b8,.b9,.b10{display:none}
-.bub{transition:opacity .6s ease,transform .7s cubic-bezier(.2,.9,.25,1.2)}
-.js .bub:not(.in){opacity:0;transform:translateY(24px) scale(.92)}
-.bub.in{animation:float 6s ease-in-out infinite;animation-delay:calc(.8s + var(--d) * .7s)}
-@keyframes float{50%{translate:0 -8px}}
-
-/* бегущая лента фактов */
-.facts{padding:40px 0 20px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.track{display:flex;gap:14px;width:max-content;animation:run 60s linear infinite}
-.fact{display:flex;align-items:center;gap:12px;padding:14px 22px 14px 14px;background:var(--white);border-radius:100px;box-shadow:0 0 0 1.5px var(--rule);white-space:nowrap}
-.fact i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--p1)}
-.fact i svg{width:19px;height:19px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.fact b{font-weight:700}
-.fact span{color:var(--muted)}
-@keyframes run{to{transform:translateX(calc(-50% - 7px))}}
-
-section{padding:140px 0}
-
-/* день с OneStep */
-.day{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.day h2,.day .sub{text-align:left;margin-left:0}
-.day .btn{margin-top:28px}
-.tl{list-style:none;position:relative;display:grid;gap:14px}
-.tl::before{content:"";position:absolute;left:58px;top:20px;bottom:20px;border-left:2px dashed #BCD5CA}
-.tl li{display:grid;grid-template-columns:44px 30px 1fr;align-items:center;gap:14px}
-.tl time{font-weight:600;font-size:14px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
-.tl .dot{width:30px;height:30px;border-radius:50%;background:var(--paper);border:2px solid #BCD5CA;position:relative;z-index:1;display:grid;place-items:center;transition:background .4s,border-color .4s}
-.tl li.in .dot{background:var(--green);border-color:var(--green)}
-.tl li.in .dot::after{content:"";width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
-.tl a{display:block;padding:16px 20px;border-radius:22px;text-decoration:none;transition:transform .2s}
-.tl a b{display:block;font-size:17px}
-.tl a span{font-size:14px;color:var(--ink-2)}
-
-/* каталог */
-.cat{background:var(--white);border-radius:48px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
-.card{display:flex;flex-direction:column;background:var(--paper);border-radius:32px;padding:10px;scroll-margin-top:90px}
-.shot{aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px var(--rule)}
-.shot img{width:100%;height:100%;object-fit:cover;object-position:left top;transition:transform .5s}
-.cb{padding:20px 14px 14px;display:flex;flex-direction:column;flex:1}
-.cb h3{font-size:22px}
-.tag{align-self:flex-start;margin-top:10px;font-size:13px;font-weight:600;color:var(--green-d);background:var(--p1);padding:4px 12px;border-radius:100px}
-.cb p{margin-top:8px;font-size:15px;color:var(--muted);flex:1}
-.price{display:flex;align-items:baseline;gap:10px;margin:18px 0 16px}
-.price b{font-size:28px;font-weight:800;color:var(--green);letter-spacing:-.02em}
-.price s{font-size:16px;color:#6E887D}
-.cbtn{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cbtn .btn{height:48px;padding:0 10px;font-size:15px;box-shadow:none}
-.cbtn .btn-w{box-shadow:0 0 0 1.5px var(--rule)}
-.gs{margin-top:30px;text-align:center;color:var(--muted);font-size:15px}
-
-/* что в каждой таблице */
-.feat{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
-.feat li{background:var(--white);border-radius:28px;padding:26px 24px}
-.feat i{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px}
-.feat i svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.feat li:nth-child(8n+1) i{background:var(--p1)}.feat li:nth-child(8n+2) i{background:var(--p4)}.feat li:nth-child(8n+3) i{background:var(--p5)}.feat li:nth-child(8n+4) i{background:var(--p6)}
-.feat li:nth-child(8n+5) i{background:var(--p2)}.feat li:nth-child(8n+6) i{background:var(--p3)}.feat li:nth-child(8n+7) i{background:var(--p6)}.feat li:nth-child(8n) i{background:var(--p1)}
-.feat b{display:block;font-size:17px}
-.feat span{display:block;margin-top:4px;font-size:15px;color:var(--muted)}
-
-/* как получить */
-.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px;counter-reset:s}
-.steps li{counter-increment:s;background:var(--white);border-radius:28px;padding:24px}
-.steps li::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:18px;margin-bottom:18px}
-.steps b{display:block;font-size:18px}
-.steps span{display:block;margin-top:4px;font-size:15px;color:var(--muted)}
-.note{margin-top:22px;text-align:center;color:var(--muted);font-size:15px}
-
-/* вопросы */
-.faq{max-width:780px;margin:48px auto 0;display:grid;gap:10px}
-.faq details{background:var(--white);border-radius:24px;padding:0 26px}
-.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;cursor:pointer}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";flex:none;width:34px;height:34px;border-radius:50%;background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6v12M6 12h12' stroke='%23247B68' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/18px no-repeat;transition:transform .25s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{padding-bottom:22px;color:var(--muted)}
-
-/* финал */
-.final{text-align:center;background:var(--green);color:#fff;border-radius:48px;padding:80px 24px;position:relative;overflow:hidden}
-.final::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(rgba(255,255,255,0) 0 35px,rgba(255,255,255,.08) 35px 36px);pointer-events:none}
-.final h2{position:relative}
-.final p{position:relative;max-width:520px;margin:16px auto 0;opacity:.85;font-size:18px}
-.final .acts{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
-.final .btn-w{box-shadow:none}
-.final .btn-o{border:1.5px solid rgba(255,255,255,.5);color:#fff}
-
-footer{padding:56px 0 40px}
-.fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
-.fcols p{margin-top:12px;color:var(--muted);font-size:15px;max-width:260px}
-.fcols b{display:block;font-size:15px;margin-bottom:12px}
-.fcols ul{list-style:none;display:grid;gap:8px;font-size:15px}
-.fcols a{text-decoration:none;color:var(--ink-2)}
-.copy{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule);font-size:14px;color:var(--muted)}
-
-/* окна */
-dialog{margin:auto;border:0;border-radius:32px;width:min(640px,calc(100% - 24px));max-height:calc(100dvh - 24px);padding:0;background:var(--white);color:var(--ink)}
-dialog::backdrop{background:rgba(30,74,61,.5);backdrop-filter:blur(4px)}
-dialog[open]{animation:pop .35s cubic-bezier(.2,.9,.25,1.1)}
-@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.97)}}
-.dl{padding:34px 32px 26px}
-.dl .x{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;background:var(--paper);font-size:22px}
-.dl h2{font-size:30px;text-align:left;padding-right:48px}
-.dl .gsn{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;background:var(--p1);color:var(--green-d);padding:4px 12px;border-radius:100px;white-space:nowrap}
-.dl [data-f=note]{margin-top:10px;color:var(--green);font-weight:600}
-.dl h3{font-size:17px;letter-spacing:0;margin:22px 0 8px}
-.dl ul{list-style:none;display:grid;gap:6px;color:var(--ink-2)}
-.dl li{padding-left:24px;position:relative}
-.dl li::before{content:"";position:absolute;left:0;top:6px;width:14px;height:14px;border-radius:5px;background:var(--p1)}
-.dl .main{margin-top:22px;padding:18px;border-radius:20px;background:var(--paper);font-weight:500}
-.buy{position:sticky;bottom:0;display:flex;align-items:center;gap:14px;padding:16px 32px;background:var(--white);border-top:1px solid var(--rule)}
-.buy .price{margin:0;flex:1}
-#pay .price{margin:14px 0 18px}
-.payBox{min-height:120px;border-radius:20px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
-.payBox iframe{display:block;width:100%!important;border:0}
-.payNote{margin-top:14px;font-size:13px;color:var(--muted)}
-.payNote a{color:var(--green)}
-
-/* скидка */
-.sale{display:flex;align-items:center;justify-content:center;gap:12px;margin:34px auto 0;width:fit-content;max-width:100%;padding:10px 22px 10px 10px;border-radius:100px;background:var(--p4);font-weight:600}
-.sale b{display:grid;place-items:center;height:40px;padding:0 14px;border-radius:100px;background:var(--green);color:#fff;font-weight:800}
-.gs{margin-top:16px}
-.faq details p a{color:var(--green);font-weight:600}
-.center{display:flex;justify-content:center;margin-top:28px}
-
-/* поддержка */
-.help{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;background:var(--white);border-radius:48px;padding:56px}
-.help h2{text-align:left}
-.help-t p{margin-top:14px;color:var(--muted);font-size:18px;max-width:440px}
-.help-t .btn{margin-top:26px}
-.help-t small{display:block;margin-top:12px;color:var(--muted);font-size:14px}
-.help-c{display:grid;gap:12px}
-.help-c a{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:28px;background:var(--paper);text-decoration:none;transition:transform .2s}
-.help-c i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--p1);flex:none}
-.help-c i svg{width:24px;height:24px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.help-c i.tg{background:#E5484D}
-.help-c i.tg svg{fill:#fff;stroke:none}
-.help-c b{display:block;font-size:17px}
-.help-c span{color:var(--ink-2);overflow-wrap:anywhere}
-
-/* наверх */
-.copy{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.up{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);font-weight:600;text-decoration:none}
-.up svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-/* плавающая мини-карточка Telegram */
-.tgc{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:40}
-.tgc-card{position:relative;width:236px;background:var(--white);border-radius:24px;overflow:hidden;box-shadow:0 0 0 1px var(--rule),0 22px 44px -18px rgba(16,37,30,.55);transform-origin:100% 100%;transition:opacity .3s,transform .4s cubic-bezier(.2,.9,.25,1.1)}
-.tgc-x{position:absolute;top:6px;right:6px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.85);font-size:18px;line-height:1;color:var(--ink)}
-.tgc-pv{height:74px;background:var(--p1);display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:14px 46px 14px 14px}
-.tgc-pv i{border-radius:4px;background:rgba(255,255,255,.8)}
-.tgc-pv i.on{background:var(--green)}
-.tgc-bd{padding:12px 14px 14px}
-.tgc-bd b{display:block;font-size:16px}
-.tgc-bd small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
-.tgc-bd a{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;height:42px;border-radius:100px;background:#D2363C;color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:background .2s}
-.tgc-bd a svg{width:17px;height:17px;fill:#fff}
-.tgc-dot{position:absolute;right:0;bottom:0;width:58px;height:58px;border-radius:50%;background:#E5484D;display:grid;place-items:center;box-shadow:0 12px 26px -8px rgba(229,72,77,.7);opacity:0;transform:scale(.4);pointer-events:none;transition:opacity .3s .15s,transform .4s .15s cubic-bezier(.2,.9,.25,1.3)}
-.tgc-dot svg{width:28px;height:28px;fill:#fff;margin-left:-3px}
-.tgc-dot::before,.tgc-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#E5484D;z-index:-1;animation:tgring 2.4s ease-out infinite}
-.tgc-dot::after{animation-delay:1.2s}
-.tgc.min .tgc-card{opacity:0;transform:scale(.3);pointer-events:none}
-.tgc.min .tgc-dot{opacity:1;transform:none;pointer-events:auto}
-.js .tgc:not(.on) .tgc-card{opacity:0;transform:translateY(20px) scale(.9);pointer-events:none}
-@keyframes tgring{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.9);opacity:0}}
-
-/* окно таблицы: слева «как это работает» и слайды, справа заказ и оплата */
-dialog.pm{width:min(1060px,calc(100% - 32px));max-height:calc(100dvh - 32px);border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
-dialog.pm[open]{display:flex}
-.pm-x{position:absolute;top:16px;right:16px;z-index:3;width:44px;height:44px;border-radius:50%;background:var(--paper);font-size:24px;line-height:1}
-.pm-grid{display:grid;grid-template-columns:1.2fr .8fr;overflow:auto;flex:1}
-.pm-info{padding:40px 40px 36px}
-.pm-tag{display:inline-block;padding:5px 14px;border-radius:100px;background:var(--p1);color:var(--green-d);font-size:13px;font-weight:600}
-.pm-info h2{margin-top:14px;font-size:clamp(28px,3vw,38px);text-align:left;padding-right:40px}
-.pm-desc{margin-top:10px;color:var(--ink-2);font-size:17px}
-.pm-note{margin-top:8px;color:var(--green);font-weight:600}
-.pm-how{list-style:none;counter-reset:h;display:grid;gap:10px;margin-top:24px}
-.pm-how li{counter-increment:h;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;font-weight:500}
-.pm-how li::before{content:counter(h);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:15px}
-.pm-media{margin-top:26px}
-.pm-view{border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px var(--rule);aspect-ratio:16/9}
-.pm-track{display:flex;height:100%;transition:transform .45s cubic-bezier(.3,.7,.2,1)}
-.pm-track>*{flex:0 0 100%;width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
-.pm-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
-.pm-arr{width:40px;height:40px;border-radius:50%;background:var(--paper);font-size:22px;line-height:1;color:var(--ink)}
-.pm.one-slide .pm-nav{display:none}
-.pm-more{margin-top:22px;border-top:1px solid var(--rule);padding-top:14px}
-.pm-more summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
-.pm-more summary::-webkit-details-marker{display:none}
-.pm-more summary::after{content:"+";font-size:22px;color:var(--green);transition:transform .25s}
-.pm-more[open] summary::after{transform:rotate(45deg)}
-.pm-more ul{list-style:none;display:grid;gap:6px;margin-top:12px;color:var(--ink-2)}
-.pm-more li{padding-left:22px;position:relative}
-.pm-more li::before{content:"";position:absolute;left:0;top:7px;width:12px;height:12px;border-radius:4px;background:var(--p1)}
-.pm-order{background:var(--paper);padding:40px 32px 32px;display:flex;flex-direction:column}
-.pm-h{font-size:22px;letter-spacing:-.02em}
-.pm-item{margin-top:18px;padding:16px 18px;border-radius:20px;background:#fff}
-.pm-item b{display:block;font-size:17px}
-.pm-item small{display:block;margin-top:2px;color:var(--muted);font-size:13px}
-.pm-order .price{margin:18px 0 8px}
-.pm-sale{align-self:flex-start;padding:5px 12px;border-radius:100px;background:var(--p4);font-size:13px;font-weight:600}
-.pm-h2{margin-top:24px;font-size:16px}
-.pm-steps{list-style:none;counter-reset:s;display:grid;gap:10px;margin-top:12px;font-size:15px;color:var(--ink-2)}
-.pm-steps li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:10px}
-.pm-steps li::before{content:counter(s);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px var(--rule);font-weight:700;font-size:13px;color:var(--green)}
-.pm-pay{margin-top:auto}
-.pm-order .pm-pay{margin-top:26px;width:100%}
-.pm-ask{margin-top:10px;width:100%}
-.pm-fine{margin-top:16px;font-size:12px;color:var(--muted);line-height:1.45}
-.pm-fine a{color:var(--green)}
-.pm-bar{display:none}
-@media (max-width:860px){
-  dialog.pm{width:100%;max-width:100%;max-height:calc(100dvh - 12px);margin:auto 0 0;border-radius:28px 28px 0 0}
-  .pm-grid{grid-template-columns:1fr}
-  .pm-info{padding:30px 18px 24px}
-  .pm-order{padding:26px 18px 24px}
-  .pm-order .pm-pay{display:none}
-  .pm-bar{display:flex;align-items:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--rule)}
-  .pm-bar .price{margin:0;flex:1;gap:8px}
-  .pm-bar .price b{font-size:22px}
-  .pm-bar .btn{height:50px;padding:0 20px;font-size:15px}
-  .pm-x{top:12px;right:12px}
-}
-
-/* появление при прокрутке */
-.js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.js .rv.in{opacity:1;transform:none}
-.grid .rv:nth-child(3n+2),.feat .rv:nth-child(4n+2),.steps .rv:nth-child(2){transition-delay:.08s}
-.grid .rv:nth-child(3n),.feat .rv:nth-child(4n+3),.steps .rv:nth-child(3){transition-delay:.16s}
-.feat .rv:nth-child(4n),.steps .rv:nth-child(4){transition-delay:.24s}
-
-@media (max-width:1020px){
-  .help{grid-template-columns:1fr}
-  .top nav{display:none}
-  .top .btn{margin-left:auto}
-  .b1{left:calc(50% - 360px)}.b2{left:calc(50% - 330px)}.b3{left:calc(50% - 360px)}
-  .b4{left:calc(50% + 165px)}.b5{left:calc(50% + 175px)}.b6{left:calc(50% + 160px)}
-  .bub small{display:none}
-  .day{grid-template-columns:1fr;gap:40px}
-  .grid{grid-template-columns:1fr 1fr}
-  .feat,.steps{grid-template-columns:1fr 1fr}
-  .fcols{grid-template-columns:1fr 1fr}
-}
-@media (max-width:700px){
-  body{font-size:16px}
-  .wrap{padding:0 16px}
-  .gift{font-size:14px}
-  .top{padding:0 16px;top:8px;margin-top:14px}
-  .top .wrap{height:58px;padding:0 6px 0 14px}
-  .top .btn{height:44px;padding:0 18px;font-size:15px}
-  .hero{padding:64px 0 20px;background-image:repeating-linear-gradient(var(--paper) 0 39px,#E8F0EB 39px 40px)}
-  .hero .lead{margin-top:24px}
-  .hero .acts{margin-top:32px}
-  .hero .lead{font-size:17px}
-  .lb{display:none}
-  .perks{font-size:14px;gap:8px 16px;margin-top:22px}
-  .perks li{gap:7px}
-  .perks li::before{width:18px;height:18px;border-radius:6px;background-size:13px}
-  .hero .acts .btn{flex:1 1 100%}
-  .scene{height:640px;margin-top:32px}
-  .phone{top:66px;width:240px;height:500px;border-radius:40px;padding:6px}
-  .screen{border-radius:34px;padding:42px 14px 14px}
-  .ring{width:124px;margin:12px 0}
-  .ring b{font-size:32px}
-  .habits li{padding:8px 10px;font-size:13px}
-  .bub{padding:8px 14px 8px 8px;font-size:13px}
-  .bub i{width:26px;height:26px}
-  .bub i svg{width:14px;height:14px}
-  /* на телефоне пузыри над и под телефоном, чтобы не закрывать экран */
-  .b1{left:0;top:0}.b4{left:auto;right:0;top:0}
-  .b7{display:flex;left:0;top:auto;bottom:0}.b5{left:auto;right:0;top:auto;bottom:0}
-  .b2{display:none}
-  .b3,.b6{display:none}
-  section{padding:80px 0}
-  .sub{font-size:16px}
-  .tl::before{left:54px}
-  .tl li{grid-template-columns:40px 30px 1fr;gap:10px}
-  .cat,.final{border-radius:32px}
-  .grid,.feat,.steps{grid-template-columns:1fr;margin-top:36px}
-  .feat li,.steps li{display:grid;grid-template-columns:46px 1fr;column-gap:16px;align-items:center;padding:18px}
-  .feat i,.steps li::before{margin:0;grid-row:span 2}
-  .steps li::before{align-self:center}
-  .final{padding:56px 20px}
-  .help{grid-template-columns:1fr;gap:28px;padding:32px 20px;border-radius:32px}
-  .help-t .btn{width:100%}
-  .sale{padding:8px 16px 8px 8px;font-size:15px;text-align:left}
-  .tgc{right:12px;bottom:12px}
-  .tgc-card{width:196px}
-  .tgc-pv{height:52px;padding:10px 42px 10px 10px;gap:3px}
-  .tgc-bd{padding:10px 12px 12px}
-  .tgc-bd b{font-size:15px}
-  .tgc-bd a{height:42px;margin-top:8px}
-  footer{padding-bottom:96px}
-  .final .acts .btn{flex:1 1 100%}
-  .dl{padding:26px 18px 22px}
-  .dl h2{font-size:25px}
-  .buy{padding:14px 18px}
-  .fcols{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 20px}
-  .fcols a{overflow-wrap:anywhere}
-  .fcols>div:first-child{grid-column:1/-1}
-}
-@media (max-width:359px){
-  .top .wrap{gap:10px}
-  .top .btn{padding:0 12px;font-size:13px}
-  .top .logo{font-size:18px}
-  .bub{font-size:12px;padding:8px 12px}
-  .bub i{display:none}
-}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .bub{opacity:1;transform:none}}
-/* первый экран: текст слева, телефон справа, по три пузыря с каждой стороны */
-@media (min-width:1021px){
-  .hero{padding:90px 0 120px}
-  .hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center;text-align:left}
-  .hero h1{margin:0;max-width:none}
-  .hero .lead{margin:28px 0 0;max-width:none;font-size:19px}
-  .hero .acts{justify-content:flex-start;margin-top:40px}
-  .scene{margin:0;height:620px}
-  /* текст по высоте телефона: слоган от верха телефона, кнопки по его низу, текст посередине */
-  .hero .wrap{align-items:start}
-  .intro{display:flex;flex-direction:column;justify-content:space-between;height:570px;margin-top:25px}
-  .hero h1{margin-top:-.46em;font-size:clamp(40px,4.6vw,68px)}
-  .hero .lead,.hero .acts,.perks{margin:0}
-  .perks{flex-direction:column;align-items:flex-start;gap:14px;font-size:17px}
-  .phone{width:280px;height:570px;top:25px;border-radius:44px;padding:7px}
-  .screen{border-radius:37px;padding:44px 16px 16px}
-  .ring{width:140px;margin:14px 0 14px}
-  .ring b{font-size:34px}
-  .habits li{padding:9px 11px;font-size:13px}
-  .bub small{display:none}
-  .b2,.b3,.b6,.b8,.b9,.b10{display:none}
-  .b5,.b7{display:flex}
-  /* слева и справа от телефона с зазором 12px (половина телефона 155px) */
-  .b1,.b7{left:auto;right:calc(50% + 154px)}
-  .b4,.b5{right:auto;left:calc(50% + 154px)}
-  .b1{top:120px}.b7{top:390px;right:calc(50% + 166px)}
-  .b4{top:200px}.b5{top:470px;left:calc(50% + 166px)}
-}
-@media (min-width:1021px) and (max-width:1279px){
-  .b2,.b5,.b6,.b9,.b10{display:none}
-  .b1,.b7{right:calc(50% + 154px)}
-  .b4{right:auto;left:calc(50% + 157px);top:150px}
-  .b1{top:120px}.b7{top:390px}
-}
-@media (min-width:1021px) and (max-width:1259px){.b4{display:none}}
-/* эффекты наведения только там, где есть мышка: на телефоне они «залипают» после касания */
-@media (hover:hover) and (pointer:fine){
-  .btn-g:hover{background:var(--green-d)}
-  .btn-w:hover{box-shadow:0 0 0 1.5px var(--green)}
-  .top nav a:hover{color:#fff!important}
-  .top .btn:hover{background:var(--p1)}
-  .bub.in:hover{transform:translateY(-4px);transition:transform .25s ease}
-  .facts:hover .track{animation-play-state:paused}
-  .tl a:hover{transform:translateX(4px)}
-  .card:hover .shot img{transform:scale(1.05)}
-  .final .btn-o:hover{border-color:#fff}
-  .fcols a:hover{color:var(--green)}
-  .help-c a:hover{transform:translateX(4px)}
-  .up:hover{color:var(--green)}
-  .tgc-x:hover{background:#fff}
-  .tgc-bd a:hover{background:#B92F35}
-}
-</style>
+<script src="pay.js"></script>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
 
  <header class="top"><div class="wrap">
   <a class="logo" href="#top"><i></i>OneStep</a>
-  <nav><a href="#day">Как это работает</a><a href="#catalog">Таблицы</a><a href="#how">Как получить</a><a href="#faq">Вопросы</a></nav>
+  <nav><a href="#catalog">Таблицы</a><a href="#day">Как это работает</a><a href="#faq">Вопросы</a></nav>
   <a class="btn btn-g" href="#catalog">Выбрать таблицу</a>
 </div></header>
 
@@ -492,8 +34,8 @@ dialog.pm[open]{display:flex}
 <section class="hero" aria-label="OneStep">
   <div class="wrap">
     <div class="intro"><h1 id="slogan"><span class="no">не мотивация</span>, а <span class="sysw"><i class="ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7"/></svg></i>система</span></h1>
-    <p class="lead">Готовые Google Таблицы для привычек, целей и денег.<br class="lb"> Пять минут в день, и прогресс виден в цифрах.</p>
-    <ul class="perks"><li>6 таблиц от 499 ₽</li><li>Работает с телефона</li><li>Инструкция внутри</li></ul>
+    <p class="lead">Готовые Google Таблицы для привычек, целей и денег.<br class="lb"> Отмечаешь, что сделал, а прогресс таблица считает сама.</p>
+    <p class="once">Разовая покупка от 499 ₽. Без подписки и рекламы, таблица остаётся у тебя навсегда.</p>
     <div class="acts">
       <a class="btn btn-g" href="#catalog">Выбрать таблицу</a>
       <a class="btn btn-w" href="https://t.me/onestep_sheets" target="_blank" rel="noopener">Бесплатный шаблон</a>
@@ -528,28 +70,23 @@ dialog.pm[open]{display:flex}
   </div>
 </section>
 
-<div class="facts" aria-label="Коротко про OneStep">
-  <div class="track">
-    <div class="fact"><i><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 10h16M9 5v14"/></svg></i><b>6 таблиц</b><span>на разные задачи</span></div>
-    <div class="fact"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></i><b>5 минут</b><span>в день хватает</span></div>
-    <div class="fact"><i><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></i><b>с телефона</b><span>iOS и Android</span></div>
-    <div class="fact"><i><svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6zM9 11h6M9 15h6"/></svg></i><b>инструкция</b><span>к каждой таблице</span></div>
-    <div class="fact"><i><svg viewBox="0 0 24 24"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/></svg></i><b>поддержка</b><span>в Telegram</span></div>
-    <div class="fact"><i><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></i><b>галочки</b><span>а проценты считаются сами</span></div>
-    <div class="fact" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 10h16M9 5v14"/></svg></i><b>6 таблиц</b><span>на разные задачи</span></div>
-    <div class="fact" aria-hidden="true"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></i><b>5 минут</b><span>в день хватает</span></div>
-    <div class="fact" aria-hidden="true"><i><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></i><b>с телефона</b><span>iOS и Android</span></div>
-    <div class="fact" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6zM9 11h6M9 15h6"/></svg></i><b>инструкция</b><span>к каждой таблице</span></div>
-    <div class="fact" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/></svg></i><b>поддержка</b><span>в Telegram</span></div>
-    <div class="fact" aria-hidden="true"><i><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></i><b>галочки</b><span>а проценты считаются сами</span></div>
+<section class="pains" id="why">
+  <div class="wrap">
+    <h2 class="rv">узнаёшь себя?</h2>
+    <ul class="pain-list">
+      <li class="rv"><b>«С понедельника начну»</b><span>А через неделю привычка забыта, и всё сначала.</span></li>
+      <li class="rv"><b>Деньги куда-то уходят</b><span>Доход нормальный, но к концу месяца непонятно, на что всё потрачено.</span></li>
+      <li class="rv"><b>Дел много, толку мало</b><span>День забит, а ощущение, что стоишь на месте.</span></li>
+    </ul>
+    <p class="pain-answer rv">Дело не в силе воли. Когда не видно результата, бросить проще всего. OneStep показывает прогресс в цифрах, поэтому продолжать легче.</p>
   </div>
-</div>
+</section>
 
-<section id="day">
+<section id="day" style="padding-top:0">
   <div class="wrap day">
     <div class="rv">
       <h2>пять минут в день, и всё под контролем</h2>
-      <p class="sub">Не нужно менять жизнь за выходные. Открываешь таблицу, ставишь галочку, вписываешь цифру. Остальное таблица считает сама.</p>
+      <p class="sub">Не нужно менять жизнь за выходные. Открываешь таблицу на телефоне, ставишь галочку или вписываешь сумму. Графики и проценты таблица считает сама.</p>
       <a class="btn btn-g" href="#catalog">Посмотреть таблицы</a>
     </div>
     <ol class="tl" id="tl">
@@ -564,34 +101,34 @@ dialog.pm[open]{display:flex}
 
 <section class="cat" id="catalog">
   <div class="wrap">
-    <h2 class="rv">выбери свою таблицу</h2>
-    <p class="sub rv">Покупаешь один раз, таблица остаётся в твоём Google Диске.</p>
+    <h2 class="rv">выбери, с чего начать</h2>
+    <p class="sub rv">Покупаешь один раз. Таблица копируется в твой Google Диск и остаётся у тебя.</p>
+    <div class="filters rv" role="tablist" aria-label="Фильтр таблиц">
+      <button class="on" data-filter="all" role="tab" aria-selected="true">Все</button>
+      <button data-filter="life" role="tab" aria-selected="false">Привычки и цели</button>
+      <button data-filter="money" role="tab" aria-selected="false">Деньги</button>
+      <button data-filter="biz" role="tab" aria-selected="false">Бизнес</button>
+    </div>
     <div class="grid">
-      <article class="card rv" id="p-habits"><div class="shot"><img src="img/habits.webp" alt="Трекер привычек: месяц с галочками и графиком" loading="lazy"></div><div class="cb"><h3>Трекер привычек</h3><p>Отмечай привычки и смотри прогресс по месяцам и за год.</p><div class="price"><b>499 ₽</b><s>799 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="habits">Подробнее</a><a class="btn btn-g" href="#" data-buy="habits">Купить</a></div></div></article>
-      <article class="card rv" id="p-goals"><div class="shot"><img src="img/goals.webp" alt="Цели на год: колесо баланса" loading="lazy"></div><div class="cb"><h3>Цели на год</h3><p>Цели по всем сферам жизни, с кварталами и дедлайнами.</p><div class="price"><b>859 ₽</b><s>1 349 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="goals">Подробнее</a><a class="btn btn-g" href="#" data-buy="goals">Купить</a></div></div></article>
-      <article class="card rv" id="p-finance"><div class="shot"><img src="img/finance.webp" alt="Финансовый трекер: доходы и расходы" loading="lazy"></div><div class="cb"><h3>Финансовый трекер</h3><p>Доходы, расходы и план трат на следующий месяц.</p><div class="price"><b>799 ₽</b><s>1 299 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="finance">Подробнее</a><a class="btn btn-g" href="#" data-buy="finance">Купить</a></div></div></article>
-      <article class="card rv" id="p-decomp"><div class="shot"><img src="img/decomp.webp" alt="Финансовая декомпозиция бизнес-идеи" loading="lazy"></div><div class="cb"><h3>Финансовая декомпозиция</h3><span class="tag">Для бизнес-идеи</span><p>Посчитай, окупится ли идея, до того как вкладывать деньги.</p><div class="price"><b>549 ₽</b><s>849 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="decomp">Подробнее</a><a class="btn btn-g" href="#" data-buy="decomp">Купить</a></div></div></article>
-      <article class="card rv" id="p-planner"><div class="shot"><img src="img/planner.webp" alt="Планер на месяц: задачи по неделям" loading="lazy"></div><div class="cb"><h3>Планер на месяц</h3><p>Задачи, встречи и приоритеты месяца в одной таблице.</p><div class="price"><b>599 ₽</b><s>899 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="planner">Подробнее</a><a class="btn btn-g" href="#" data-buy="planner">Купить</a></div></div></article>
-      <article class="card rv" id="p-finmodel"><div class="shot"><img src="img/finmodel.webp" alt="Финмодель для бизнеса по месяцам" loading="lazy"></div><div class="cb"><h3>Финмодель для бизнеса</h3><span class="tag">Для действующего бизнеса</span><p>Прибыль, маржинальность и все расходы по месяцам.</p><div class="price"><b>1 499 ₽</b><s>2 199 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="finmodel">Подробнее</a><a class="btn btn-g" href="#" data-buy="finmodel">Купить</a></div></div></article>
+      <article class="card rv" id="p-habits" data-cat="life"><a class="shot" href="trekker-privychek.html"><img src="img/habits.webp" alt="Трекер привычек: месяц с галочками и графиком" loading="lazy"></a><div class="cb"><h3><a href="trekker-privychek.html">Трекер привычек</a></h3><p>До 20 привычек на весь год. Ставишь галочку, проценты и графики считаются сами.</p><div class="price"><b>499 ₽</b><s>799 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="habits">Подробнее</a><a class="btn btn-g" href="#" data-buy="habits">Купить</a></div></div></article>
+      <article class="card rv" id="p-goals" data-cat="life"><a class="shot" href="celi-na-god.html"><img src="img/goals.webp" alt="Цели на год: колесо баланса" loading="lazy"></a><div class="cb"><h3><a href="celi-na-god.html">Цели на год</a></h3><p>Колесо баланса, до 100 целей по кварталам и прогресс в процентах.</p><div class="price"><b>859 ₽</b><s>1 349 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="goals">Подробнее</a><a class="btn btn-g" href="#" data-buy="goals">Купить</a></div></div></article>
+      <article class="card rv" id="p-planner" data-cat="life"><a class="shot" href="planer-na-mesyac.html"><img src="img/planner.webp" alt="Планер на месяц: задачи по неделям" loading="lazy"></a><div class="cb"><h3><a href="planer-na-mesyac.html">Планер на месяц</a></h3><p>Задачи и встречи по дням, статусы и реальная загрузка недели.</p><div class="price"><b>599 ₽</b><s>899 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="planner">Подробнее</a><a class="btn btn-g" href="#" data-buy="planner">Купить</a></div></div></article>
+      <article class="card rv" id="p-finance" data-cat="money"><a class="shot" href="finansovyj-treker.html"><img src="img/finance.webp" alt="Финансовый трекер: доходы и расходы" loading="lazy"></a><div class="cb"><h3><a href="finansovyj-treker.html">Финансовый трекер</a></h3><p>Доходы и расходы по категориям и бюджет на следующий месяц.</p><div class="price"><b>799 ₽</b><s>1 299 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="finance">Подробнее</a><a class="btn btn-g" href="#" data-buy="finance">Купить</a></div></div></article>
+      <article class="card rv" id="p-decomp" data-cat="biz"><a class="shot" href="finansovaya-dekompoziciya.html"><img src="img/decomp.webp" alt="Финансовая декомпозиция бизнес-идеи" loading="lazy"></a><div class="cb"><h3><a href="finansovaya-dekompoziciya.html">Финансовая декомпозиция</a></h3><span class="tag">Для бизнес-идеи</span><p>Сколько продаж нужно до цели и окупится ли идея. Ещё до вложений.</p><div class="price"><b>549 ₽</b><s>849 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="decomp">Подробнее</a><a class="btn btn-g" href="#" data-buy="decomp">Купить</a></div></div></article>
+      <article class="card rv" id="p-finmodel" data-cat="biz"><a class="shot" href="finmodel-dlya-biznesa.html"><img src="img/finmodel.webp" alt="Финмодель для бизнеса по месяцам" loading="lazy"></a><div class="cb"><h3><a href="finmodel-dlya-biznesa.html">Финмодель для бизнеса</a></h3><span class="tag">Для действующего бизнеса</span><p>Прибыль, маржа, реклама, зарплаты и налоги по месяцам.</p><div class="price"><b>1 499 ₽</b><s>2 199 ₽</s></div><div class="cbtn"><a class="btn btn-w" href="#" data-more="finmodel">Подробнее</a><a class="btn btn-g" href="#" data-buy="finmodel">Купить</a></div></div></article>
     </div>
     <p class="sale rv"><b>−10%</b><span>Скидка 10% при покупке любых трёх таблиц</span></p>
-    <p class="gs">Все таблицы работают в Google Sheets на компьютере и в приложении на телефоне.</p>
   </div>
 </section>
 
-<section>
+<section class="vs">
   <div class="wrap">
-    <h2 class="rv">что есть в каждой таблице</h2>
-    <ul class="feat">
-      <li class="rv"><i><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></i><b>Автоподсчёт</b><span>Ставишь галочку, проценты считаются сами</span></li>
-      <li class="rv"><i><svg viewBox="0 0 24 24"><path d="M4 19h16M7 15V9M12 15V5M17 15v-3"/></svg></i><b>Наглядный прогресс</b><span>Графики и диаграммы по месяцам</span></li>
-      <li class="rv"><i><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></i><b>Работает с телефона</b><span>Через приложение Google Таблицы</span></li>
-      <li class="rv"><i><svg viewBox="0 0 24 24"><path d="M6 4h9l3 3v13H6zM9 11h6M9 15h6"/></svg></i><b>Инструкция</b><span>Разберёшься, даже если ни разу не открывал Sheets</span></li>
-      <li class="rv"><i><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4M12 8v4l3 2"/></svg></i><b>История сохраняется</b><span>Можно вернуться и посмотреть прошлые месяцы</span></li>
-      <li class="rv"><i><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16zM14 6l3 3"/></svg></i><b>Под себя</b><span>Свои названия, строки и категории</span></li>
-      <li class="rv"><i><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg></i><b>Обновления</b><span>Мы улучшаем таблицы со временем</span></li>
-      <li class="rv"><i><svg viewBox="0 0 24 24"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/></svg></i><b>Поддержка</b><span>Отвечаем в Telegram в течение дня</span></li>
-    </ul>
+    <h2 class="rv">почему таблица, а не приложение</h2>
+    <div class="vs-grid">
+      <div class="vs-col rv"><b>Приложение</b><ul><li>Подписка каждый месяц</li><li>Реклама и лишние функции</li><li>Не поменять под себя</li></ul></div>
+      <div class="vs-col rv"><b>Блокнот</b><ul><li>Ничего не считает сам</li><li>Не видно динамики за месяцы</li><li>Теряется и забрасывается</li></ul></div>
+      <div class="vs-col vs-our rv"><b>OneStep</b><ul><li>Платишь один раз, таблица твоя навсегда</li><li>Проценты и графики считаются сами</li><li>Меняешь под себя: строки, категории, названия</li><li>Работает на телефоне и компьютере</li></ul></div>
+    </div>
   </div>
 </section>
 
@@ -600,12 +137,11 @@ dialog.pm[open]{display:flex}
     <h2 class="rv">как получить таблицу</h2>
     <ol class="steps">
       <li class="rv"><b>Выбери таблицу</b><span>Под свою задачу в каталоге</span></li>
-      <li class="rv"><b>Оплати</b><span>Через защищённый платёжный сервис</span></li>
-      <li class="rv"><b>Получи письмо</b><span>Ссылка и инструкция придут на почту</span></li>
+      <li class="rv"><b>Оплати</b><span>Через защищённую платёжную форму</span></li>
+      <li class="rv"><b>Получи письмо</b><span>Через 10–15 минут придут ссылка и инструкция</span></li>
       <li class="rv"><b>Сделай копию</b><span>Сохрани таблицу себе и начинай</span></li>
     </ol>
     <p class="note">Письма нет? Проверь «Спам» и «Промоакции» или <a href="https://t.me/onestep_support" target="_blank" rel="noopener">напиши в поддержку</a>.</p>
-    <div class="center"><a class="btn btn-g" href="#catalog">Перейти к каталогу</a></div>
   </div>
 </section>
 
@@ -613,20 +149,14 @@ dialog.pm[open]{display:flex}
   <div class="wrap">
     <h2 class="rv">частые вопросы</h2>
     <div class="faq rv">
-      <details><summary>В каких программах работают таблицы?</summary><p>Только в Google Sheets: на компьютере в браузере и в приложении Google Таблицы на телефоне.</p></details>
-      <details><summary>Я не разбираюсь в Google Sheets. Справлюсь?</summary><p>Да. Таблицы простые, к каждой есть инструкция. Подойдут даже новичкам: ставишь галочки и вписываешь цифры, остальное считается само.</p></details>
-      <details><summary>Как получить таблицу?</summary><p>Выбери таблицу в каталоге и оплати. На почту придёт письмо со ссылкой и инструкцией.</p></details>
-      <details><summary>После оплаты ничего не пришло. Что делать?</summary><p>Письмо приходит в течение 10–15 минут. Проверь папки «Спам» и «Промоакции». Если письма нет, <a href="https://t.me/onestep_support" target="_blank" rel="noopener">напиши в поддержку</a>, пришлём ссылку.</p></details>
-      <details><summary>Как скопировать таблицу себе?</summary><p>Открой ссылку из письма, войди в свой аккаунт Google и нажми «Файл», затем «Создать копию». Копия сохранится в твоём Google Диске, и с ней можно работать.</p></details>
-      <details><summary>Можно пользоваться с телефона?</summary><p>Да. Google Sheets работает на iOS и Android через бесплатное приложение Google Таблицы.</p></details>
+      <details><summary>Я не разбираюсь в Google Таблицах. Справлюсь?</summary><p>Да. Все формулы уже настроены, к каждой таблице есть инструкция. Ты только ставишь галочки и вписываешь цифры, остальное считается само.</p></details>
+      <details><summary>Можно пользоваться с телефона?</summary><p>Да, через бесплатное приложение Google Таблицы на iOS и Android. На компьютере таблица открывается в браузере.</p></details>
       <details><summary>Нужен платный Google?</summary><p>Нет, хватит обычного бесплатного аккаунта Google.</p></details>
-      <details><summary>Можно поменять таблицу под себя?</summary><p>Да, в разумных пределах: названия, строки, свои данные. Структуру и формулы лучше не трогать, на них держатся подсчёты.</p></details>
-      <details><summary>Можно использовать для семьи или бизнеса?</summary><p>Некоторые таблицы да. Это указано в описании каждой таблицы в «Подробнее».</p></details>
-      <details><summary>Будут ли обновления таблиц?</summary><p>Да. Со временем мы добавляем улучшения и обновления.</p></details>
-      <details><summary>Будут ли ещё бесплатные таблицы?</summary><p>Да. Мы регулярно публикуем бесплатные шаблоны в <a href="https://t.me/onestep_sheets" target="_blank" rel="noopener">Telegram-канале OneStep</a>.</p></details>
-      <details><summary>Где получить скидки и промокоды?</summary><p>При покупке любых трёх таблиц скидка 10%. Промокоды и акции публикуем в <a href="https://t.me/onestep_sheets" target="_blank" rel="noopener">нашем Telegram-канале</a>.</p></details>
-      <details><summary>Есть ли поддержка, если возникнут вопросы?</summary><p>Да. Мы на связи в Telegram: <a href="https://t.me/onestep_support" target="_blank" rel="noopener">@onestep_support</a>.</p></details>
-      <details><summary>Можно вернуть деньги?</summary><p>Нет. Перед покупкой можно посмотреть описание в «Подробнее» и выбрать подходящую таблицу.</p></details>
+      <details><summary>Что будет после оплаты?</summary><p>Через 10–15 минут на почту придёт письмо со ссылкой и инструкцией. Нажимаешь «Файл», затем «Создать копию», и таблица сохраняется в твоём Google Диске.</p></details>
+      <details><summary>Письмо не пришло. Что делать?</summary><p>Проверь папки «Спам» и «Промоакции». Если письма нет, <a href="https://t.me/onestep_support" target="_blank" rel="noopener">напиши в поддержку</a>, пришлём ссылку.</p></details>
+      <details><summary>Можно поменять таблицу под себя?</summary><p>Да: названия, строки, категории и свои данные. Формулы лучше не трогать, на них держатся подсчёты.</p></details>
+      <details><summary>Будут ли обновления?</summary><p>Да, мы улучшаем таблицы. Новости и бесплатные шаблоны выходят в <a href="https://t.me/onestep_sheets" target="_blank" rel="noopener">нашем Telegram-канале</a>.</p></details>
+      <details><summary>Можно вернуть деньги?</summary><p>Нет, это цифровой товар. Перед покупкой открой «Подробнее» у таблицы или задай вопрос в Telegram, поможем выбрать.</p></details>
     </div>
   </div>
 </section>
@@ -635,8 +165,8 @@ dialog.pm[open]{display:flex}
   <div class="wrap">
     <div class="help rv">
       <div class="help-t">
-        <h2>поддержка и контакты</h2>
-        <p>Мы на связи и поможем, если появятся вопросы по покупке, доступу или работе с таблицами.</p>
+        <h2>остались вопросы?</h2>
+        <p>Поможем выбрать таблицу, разобраться с доступом или с формулами.</p>
         <a class="btn btn-g" href="https://t.me/onestep_support" target="_blank" rel="noopener">Написать в поддержку</a>
         <small>Обычно отвечаем в течение 24 часов</small>
       </div>
@@ -651,26 +181,32 @@ dialog.pm[open]{display:flex}
 <section style="padding-top:0">
   <div class="wrap">
     <div class="final rv">
-      <h2>сделай первый шаг сегодня</h2>
-      <p>Начни с одной таблицы. Достаточно одной галочки в день.</p>
+      <h2>начни с одной таблицы</h2>
+      <p>Одна галочка в день лучше, чем идеальный план, который так и не начат.</p>
       <div class="acts">
         <a class="btn btn-w" href="#catalog">Выбрать таблицу</a>
-        <a class="btn btn-o" href="https://t.me/onestep_support" target="_blank" rel="noopener">Задать вопрос</a>
+        <a class="btn btn-o" href="https://t.me/onestep_sheets" target="_blank" rel="noopener">Бесплатный шаблон</a>
       </div>
     </div>
   </div>
 </section>
 </main>
 
+
 <footer><div class="wrap">
   <div class="fcols">
     <div><a class="logo" href="#top"><i></i>OneStep</a><p>Google Таблицы для привычек, целей и денег.</p></div>
-    <div><b>Таблицы</b><ul><li><a href="#p-habits">Трекер привычек</a></li><li><a href="#p-goals">Цели на год</a></li><li><a href="#p-finance">Финансовый трекер</a></li><li><a href="#p-planner">Планер на месяц</a></li></ul></div>
+    <div><b>Таблицы</b><ul><li><a href="trekker-privychek.html">Трекер привычек</a></li><li><a href="celi-na-god.html">Цели на год</a></li><li><a href="finansovyj-treker.html">Финансовый трекер</a></li><li><a href="planer-na-mesyac.html">Планер на месяц</a></li><li><a href="finansovaya-dekompoziciya.html">Финансовая декомпозиция</a></li><li><a href="finmodel-dlya-biznesa.html">Финмодель для бизнеса</a></li></ul></div>
     <div><b>Помощь</b><ul><li><a href="https://t.me/onestep_support" target="_blank" rel="noopener">Поддержка в Telegram</a></li><li><a href="https://t.me/onestep_sheets" target="_blank" rel="noopener">Наш канал</a></li><li><a href="mailto:support@onestep.com">support@onestep.com</a></li></ul></div>
     <div><b>Документы</b><ul><li><a href="https://onestep-sheets.ru/oferta">Публичная оферта</a></li><li><a href="https://onestep-sheets.ru/politika-konfidenczialnosti">Политика конфиденциальности</a></li></ul></div>
   </div>
   <div class="copy"><span>© 2026 OneStep</span><a class="up" href="#top">Наверх <svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a></div>
 </div></footer>
+
+<div class="cookie" id="cookie" role="region" aria-label="Cookie" hidden>
+  <p>Сайт использует cookie, чтобы работали оплата и статистика посещений. Подробнее в <a href="https://onestep-sheets.ru/politika-konfidenczialnosti" target="_blank" rel="noopener">политике конфиденциальности</a>.</p>
+  <button class="btn btn-g" id="cookieOk">Понятно</button>
+</div>
 
 <aside class="tgc" id="tgc" aria-label="Бесплатный шаблон в Telegram">
   <div class="tgc-card">
@@ -753,6 +289,28 @@ dialog.pm[open]{display:flex}
   io.observe(scene);
 })();
 
+// Фильтр каталога
+(() => {
+  const btns = document.querySelectorAll('.filters button'), cards = document.querySelectorAll('.grid .card');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b); });
+    cards.forEach(c => { c.hidden = b.dataset.filter !== 'all' && c.dataset.cat !== b.dataset.filter; if (!c.hidden) c.classList.add('in'); });
+  }));
+})();
+
+// Согласие на cookie: показываем один раз, пока не нажали «Понятно»
+(() => {
+  const box = document.getElementById('cookie');
+  let ok = false;
+  try { ok = localStorage.getItem('cookieOk') === '1'; } catch (e) {}
+  if (ok) return;
+  box.hidden = false; document.body.classList.add('has-cookie');
+  document.getElementById('cookieOk').addEventListener('click', () => {
+    box.hidden = true; document.body.classList.remove('has-cookie');
+    try { localStorage.setItem('cookieOk', '1'); } catch (e) {}
+  });
+})();
+
 // Мини-карточка Telegram: появляется после первого экрана, крестик сворачивает её в красный значок
 (() => {
   const box = document.getElementById('tgc');
@@ -777,42 +335,6 @@ dialog.pm[open]{display:flex}
   items.forEach(li => io.observe(li));
 })();
 
-// Оплата: виджеты GetCourse, грузятся только по нажатию «Купить»
-const PAY = {
-  habits:   ['b932acf2f0f0411822bc966c9bf3b40c96e87b38', 1541902],
-  goals:    ['3a31e5e656a064ca6a4ec9e2480893df497df997', 1541904],
-  finance:  ['873f3379a63970041d56add7f0898b86c7a006ef', 1541910],
-  finmodel: ['095058e702daf701a852722a6401a5f104c24302', 1541912],
-  planner:  ['96192913f726b44d2b287af64ec121818f34bbf4', 1541914],
-  decomp:   ['2575bce36c5dee34ce96d191c36b3d9e88ef4604', 1541915]
-};
-(() => {
-  const pay = document.getElementById('pay'), box = document.getElementById('payBox'), boxes = {};
-  function openPay(key) {
-    const p = PRODUCTS[key];
-    document.getElementById('payName').textContent = p.name;
-    document.getElementById('payPrice').textContent = rub(p.price);
-    document.getElementById('payOld').textContent = rub(p.old);
-    Object.values(boxes).forEach(b => b.hidden = true);
-    if (!boxes[key]) {
-      const wrap = document.createElement('div'), s = document.createElement('script');
-      s.id = PAY[key][0];
-      s.src = 'https://academy.larionovmarketing.ru/pl/lite/widget/script?id=' + PAY[key][1];
-      // виджет сам стартует только на DOMContentLoaded, после подгрузки запускаем его своим событием
-      s.onload = () => document.dispatchEvent(new Event('StartWidget' + PAY[key][0]));
-      wrap.append(s); box.append(wrap); boxes[key] = wrap;
-    }
-    boxes[key].hidden = false;
-    document.getElementById('product').close();
-    pay.showModal();
-  }
-  document.addEventListener('click', e => {
-    const b = e.target.closest('[data-buy]'); if (!b) return;
-    e.preventDefault(); openPay(b.dataset.buy);
-  });
-  pay.querySelector('[data-close]').addEventListener('click', () => pay.close());
-  pay.addEventListener('click', e => { if (e.target === pay) pay.close(); });
-})();
 </script>
 </body>
 </html>
