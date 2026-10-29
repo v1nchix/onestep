@@ -84,15 +84,12 @@
   <div class="copy"><span>© 2026 OneStep · <a href="https://onestep-sheets.ru/oferta">Публичная оферта</a> · <a href="https://onestep-sheets.ru/politika-konfidenczialnosti">Политика конфиденциальности</a></span><a class="up" href="#top">Наверх <svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a></div>
 </div></footer>
 
-<dialog id="pay" aria-labelledby="payName">
-  <div class="dl">
-    <button class="x" data-close aria-label="Закрыть">×</button>
-    <h2 id="payName"></h2>
-    <div class="price"><b id="payPrice"></b><s id="payOld"></s></div>
-    <div class="payBox" id="payBox"></div>
-    <p class="payNote">Ссылка на таблицу и инструкция придут на почту, которую ты укажешь, в течение 10–15 минут. Письма нет? Проверь «Спам» и «Промоакции» или <a href="https://t.me/onestep_support" target="_blank" rel="noopener">напиши в поддержку</a>.</p>
-    <p class="payNote">Оплачивая, ты соглашаешься с <a href="https://onestep-sheets.ru/oferta" target="_blank" rel="noopener">публичной офертой</a> и <a href="https://onestep-sheets.ru/politika-konfidenczialnosti" target="_blank" rel="noopener">политикой конфиденциальности</a>.</p>
-  </div>
+<dialog id="pay" class="payd" aria-label="Оформление заказа">
+  <button class="x payd-x" data-close aria-label="Закрыть">×</button>
+  <p class="payd-h">Оформление заказа</p>
+  <p class="payd-load" id="payLoad">Загружаем форму оплаты…</p>
+  <div class="payBox" id="payBox"></div>
+  <p class="payNote">Письма нет через 15 минут? Проверь «Спам» или <a href="https://t.me/onestep_support" target="_blank" rel="noopener">напиши нам</a>.</p>
 </dialog>
 </body>
 </html>

@@ -9,11 +9,9 @@ const PAY = {
 };
 document.addEventListener('DOMContentLoaded', () => {
   const pay = document.getElementById('pay'), box = document.getElementById('payBox'), boxes = {};
+  const load = document.getElementById('payLoad');
   function openPay(key) {
-    const p = PRODUCTS[key];
-    document.getElementById('payName').textContent = p.name;
-    document.getElementById('payPrice').textContent = rub(p.price);
-    document.getElementById('payOld').textContent = rub(p.old);
+    // название и цену показывает сама форма GetCourse, поэтому здесь их не дублируем
     Object.values(boxes).forEach(b => b.hidden = true);
     if (!boxes[key]) {
       const wrap = document.createElement('div'), s = document.createElement('script');
@@ -26,6 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     boxes[key].hidden = false;
     const pr = document.getElementById('product'); if (pr && pr.open) pr.close();
     pay.showModal();
+    // пока форма грузится (бывает до 10 секунд), показываем «Загружаем форму оплаты»
+    load.hidden = false;
+    const t = setInterval(() => {
+      const f = boxes[key].querySelector('iframe');
+      if ((f && f.offsetHeight > 0) || !pay.open) { load.hidden = true; clearInterval(t); }
+    }, 200);
   }
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-buy]'); if (!b) return;
