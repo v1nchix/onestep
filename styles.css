@@ -809,3 +809,23 @@ dialog.payd{padding-top:56px}
 .tl li:nth-child(3) a{background:rgba(160,150,20,.10)!important;box-shadow:inset 0 0 0 1px rgba(160,150,20,.26)}
 .tl li:nth-child(4) a{background:rgba(214,108,70,.08)!important;box-shadow:inset 0 0 0 1px rgba(214,108,70,.22)}
 .tl li:nth-child(5) a{background:rgba(96,150,56,.09)!important;box-shadow:inset 0 0 0 1px rgba(96,150,56,.24)}
+
+/* ===== финал: ступеньки, как в логотипе ===== */
+.final4{text-align:center;padding-top:20px}
+.final4 h2{max-width:14ch;margin:0 auto}
+.final4 p{margin-top:14px;font-size:18px;color:var(--ink-2)}
+.final4 .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.stairs4{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin-top:52px;height:150px}
+.stairs4 i{width:min(14vw,110px);border-radius:14px 14px 0 0;background:rgba(36,123,104,.12);box-shadow:inset 0 0 0 1px rgba(36,123,104,.2);height:0;transition:height .8s cubic-bezier(.2,.8,.2,1)}
+.stairs4 i:last-child{background:var(--green);position:relative}
+.stairs4 i:last-child::after{content:"";position:absolute;left:50%;top:-34px;width:9px;height:17px;border:solid var(--green);border-width:0 4px 4px 0;transform:translateX(-50%) rotate(45deg);opacity:0;transition:opacity .4s 1.2s}
+.final4.in .stairs4 i:nth-child(1),.no-js-stairs .stairs4 i:nth-child(1){height:30px}
+.final4.in .stairs4 i:nth-child(2){height:60px;transition-delay:.12s}
+.final4.in .stairs4 i:nth-child(3){height:90px;transition-delay:.24s}
+.final4.in .stairs4 i:nth-child(4){height:120px;transition-delay:.36s}
+.final4.in .stairs4 i:nth-child(5){height:150px;transition-delay:.48s}
+.final4.in .stairs4 i:last-child::after{opacity:1}
+html:not(.js) .stairs4 i:nth-child(1){height:30px}html:not(.js) .stairs4 i:nth-child(2){height:60px}html:not(.js) .stairs4 i:nth-child(3){height:90px}html:not(.js) .stairs4 i:nth-child(4){height:120px}html:not(.js) .stairs4 i:nth-child(5){height:150px}
+@media (max-width:700px){.final4 .acts .btn{flex:1 1 100%}.stairs4{margin-top:40px;height:120px}
+  .final4.in .stairs4 i:nth-child(1){height:24px}.final4.in .stairs4 i:nth-child(2){height:48px}.final4.in .stairs4 i:nth-child(3){height:72px}.final4.in .stairs4 i:nth-child(4){height:96px}.final4.in .stairs4 i:nth-child(5){height:120px}}
+@media (prefers-reduced-motion:reduce){.stairs4 i{transition:none}}
