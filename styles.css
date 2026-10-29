@@ -854,3 +854,15 @@ html:not(.js) .stairs4 i:nth-child(1){height:30px}html:not(.js) .stairs4 i:nth-c
 .pain-list li:nth-child(2) b::after{transition-delay:.9s}.pain-list li:nth-child(2) .sol{transition-delay:1.35s}
 .pain-list li:nth-child(3) b::after{transition-delay:1.3s}.pain-list li:nth-child(3) .sol{transition-delay:1.75s}
 @media (prefers-reduced-motion:reduce){.pain-list b::after,.pain-list .sol{transition:none}}
+
+/* ===== финал: ступеньки и полукруглая стрелка, как в логотипе ===== */
+.stairs3{width:min(600px,100%);height:230px;margin:44px auto 0}
+.stairs3 .sp{fill:var(--ink);transform-box:fill-box;transform-origin:bottom;transition:transform .5s cubic-bezier(.2,.8,.2,1) calc(var(--i) * .14s),opacity .3s calc(var(--i) * .14s)}
+.stairs3 .curve{fill:none;stroke:var(--ink);stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.2s cubic-bezier(.5,0,.2,1) .9s}
+.stairs3 .arrow{fill:var(--ink);transition:opacity .2s 2.05s}
+.js .final4:not(.in) .stairs3 .sp{transform:scaleY(0);opacity:0}
+.js .final4:not(.in) .stairs3 .curve{stroke-dashoffset:1}
+.js .final4:not(.in) .stairs3 .arrow{opacity:0}
+.final4 .stairs3 + .acts{margin-top:36px}
+@media (max-width:700px){.stairs3{height:160px;margin-top:32px}}
+.stairs3 .arrow{transform-origin:0 0}
