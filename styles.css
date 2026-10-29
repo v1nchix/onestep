@@ -663,3 +663,7 @@ html.dlg-lock{overflow:hidden}
 .tl li:nth-child(3) .dot,.tl li:nth-child(3) a{transition-delay:.3s}
 .tl li:nth-child(4) .dot,.tl li:nth-child(4) a{transition-delay:.45s}
 .tl li:nth-child(5) .dot,.tl li:nth-child(5) a{transition-delay:.6s}
+/* окно оплаты: заголовок даёт сама форма GetCourse, наш убран; без кольца у крестика при открытии */
+dialog.payd{padding-top:56px}
+.payBox:focus{outline:none}
+.payd-x:focus:not(:focus-visible){outline:none}
