@@ -829,3 +829,7 @@ html:not(.js) .stairs4 i:nth-child(1){height:30px}html:not(.js) .stairs4 i:nth-c
 @media (max-width:700px){.final4 .acts .btn{flex:1 1 100%}.stairs4{margin-top:40px;height:120px}
   .final4.in .stairs4 i:nth-child(1){height:24px}.final4.in .stairs4 i:nth-child(2){height:48px}.final4.in .stairs4 i:nth-child(3){height:72px}.final4.in .stairs4 i:nth-child(4){height:96px}.final4.in .stairs4 i:nth-child(5){height:120px}}
 @media (prefers-reduced-motion:reduce){.stairs4 i{transition:none}}
+/* ===== первый экран: «прозрачный зелёный» вместо светло-мятного (31.10) ===== */
+.hero-tag{background:rgba(36,123,104,.08);box-shadow:inset 0 0 0 1px rgba(36,123,104,.2)}
+.hero h1 .sysw{background-image:linear-gradient(rgba(36,123,104,.09),rgba(36,123,104,.09));box-shadow:inset 0 0 0 1.5px rgba(36,123,104,.22);transition:background-size .6s ease 1.8s,box-shadow .4s ease 2.2s}
+.js .hero h1:not(.play) .sysw{box-shadow:inset 0 0 0 1.5px rgba(36,123,104,0)}
