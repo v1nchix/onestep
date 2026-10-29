@@ -45,29 +45,62 @@ const PRODUCTS = {
   }
 };
 
+// Окно таблицы: короткое описание, три шага «как это работает» и слайды.
+// Слайды: картинки сейчас, позже сюда встанут видео (.mp4) с демо-таблиц.
+const DETAILS = {
+  habits: { desc: 'Отмечай привычки и смотри прогресс по месяцам и за год.', how: ['Отмечаешь привычку галочкой, это 5 секунд в день', 'Проценты и прогресс за месяц считаются сами', 'История сохраняется: видно, как меняется весь год'], media: ['img/habits.webp'] },
+  goals: { desc: 'Цели по всем сферам жизни, с кварталами и дедлайнами.', how: ['Оцениваешь сферы жизни в колесе баланса', 'Ставишь цели по кварталам и с дедлайнами', 'Отмечаешь шаги, прогресс считается в процентах'], media: ['img/goals.webp'] },
+  finance: { desc: 'Доходы, расходы и план трат на следующий месяц.', how: ['Вписываешь доходы и траты по категориям', 'Таблица показывает, куда уходят деньги', 'Планируешь бюджет на следующий месяц'], media: ['img/finance.webp'] },
+  decomp: { desc: 'Посчитай, окупится ли идея, до того как вкладывать деньги.', how: ['Вписываешь цель по деньгам и цену продукта', 'Таблица считает, сколько нужно продаж и клиентов', 'Видишь, окупится ли идея, ещё до вложений'], media: ['img/decomp.webp'] },
+  planner: { desc: 'Задачи, встречи и приоритеты месяца в одной таблице.', how: ['Записываешь задачи и встречи по дням', 'Ставишь статусы и видишь загрузку недели', 'Месяц раскладывается по шагам без перегруза'], media: ['img/planner.webp'] },
+  finmodel: { desc: 'Прибыль, маржинальность и все расходы бизнеса по месяцам.', how: ['Вносишь доходы и расходы бизнеса по месяцам', 'Реклама, зарплаты, налоги и подписки в одной картине', 'Таблица считает прибыль и маржинальность'], media: ['img/finmodel.webp'] }
+};
+
 const rub = n => n.toLocaleString('ru-RU') + ' ₽';
 
 // Окно «Подробнее»: страница даёт <dialog id="product">, внутри [data-f="..."].
 function initModal() {
   const dlg = document.getElementById('product');
   if (!dlg) return;
-  const list = (el, items) => { el.innerHTML = items.map(t => `<li>${t}</li>`).join(''); };
+  const list = (el, items) => { if (el) el.innerHTML = items.map(t => `<li>${t}</li>`).join(''); };
+  const fill = (f, text) => dlg.querySelectorAll(`[data-f=${f}]`).forEach(el => { el.textContent = text || ''; el.hidden = !text; });
+  const track = dlg.querySelector('[data-f=media]');
+  const count = dlg.querySelector('[data-f=count]');
+  let slide = 0, slides = [];
+  function show(i) {
+    slide = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${slide * 100}%)`;
+    if (count) count.textContent = `${slide + 1} / ${slides.length}`;
+    track.querySelectorAll('video').forEach((v, k) => k === slide ? v.play().catch(() => {}) : v.pause());
+  }
+  dlg.querySelectorAll('[data-slide]').forEach(b => b.addEventListener('click', () => show(slide + +b.dataset.slide)));
   document.querySelectorAll('[data-more]').forEach(btn => btn.addEventListener('click', e => {
     e.preventDefault();
-    const p = PRODUCTS[btn.dataset.more];
-    dlg.querySelector('[data-f=name]').textContent = p.name;
-    dlg.querySelector('[data-f=price]').textContent = rub(p.price);
-    dlg.querySelector('[data-f=old]').textContent = rub(p.old);
-    const note = dlg.querySelector('[data-f=note]');
-    note.textContent = p.note || ''; note.hidden = !p.note;
+    const key = btn.dataset.more, p = PRODUCTS[key], d = DETAILS[key];
+    fill('name', p.name);
+    fill('price', rub(p.price));
+    fill('old', rub(p.old));
+    fill('note', p.note);
+    fill('desc', d.desc);
+    fill('main', p.main);
+    list(dlg.querySelector('[data-f=how]'), d.how);
     list(dlg.querySelector('[data-f=inside]'), p.inside);
     list(dlg.querySelector('[data-f=why]'), p.why);
     list(dlg.querySelector('[data-f=fit]'), p.fit);
-    dlg.querySelector('[data-f=main]').textContent = p.main;
+    dlg.querySelectorAll('[data-buy-from-modal]').forEach(b => b.dataset.buy = key);
+    if (track) {
+      slides = d.media;
+      track.innerHTML = slides.map(src => /\.mp4$/.test(src)
+        ? `<video src="${src}" muted playsinline loop preload="metadata"></video>`
+        : `<img src="${src}" alt="${p.name}: как выглядит таблица">`).join('');
+      dlg.classList.toggle('one-slide', slides.length < 2);
+    }
     dlg.showModal();
+    if (track) show(0);
   }));
   dlg.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => dlg.close()));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => track && track.querySelectorAll('video').forEach(v => v.pause()));
 }
 
 // Плавное появление блоков при прокрутке, и на ПК, и на телефоне.
