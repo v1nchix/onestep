@@ -33,38 +33,12 @@
 <main>
 <section class="hero" aria-label="OneStep">
   <div class="wrap">
-    <div class="intro"><h1 id="slogan"><span class="no">не мотивация</span>, а <span class="plain">система</span></h1>
-    <p class="lead">Готовые Google Таблицы для привычек, целей и денег.</p>
+    <div class="intro"><span class="hero-tag">Google Таблицы для привычек, целей и денег</span><h1 id="slogan"><span class="no">не мотивация</span>, а <span class="sysw"><i class="ck" aria-hidden="true"><svg viewBox="0 0 24 24"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7"/></svg></i>система</span></h1>
+    <p class="lead">Отмечаешь, что сделал. Прогресс таблица считает сама.</p>
     <div class="acts">
       <a class="btn btn-g" href="#catalog">Выбрать таблицу</a>
       <a class="txt-link" href="https://t.me/onestep_sheets" target="_blank" rel="noopener">или бесплатный шаблон в Telegram</a>
     </div>
-    </div>
-    <div class="scene" id="scene" aria-hidden="true">
-      <div class="bub b1" style="--d:0"><i><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></i><div>вода 2 л<small>каждый день</small></div></div>
-      <div class="bub b2" style="--d:2"><i><svg viewBox="0 0 24 24"><path d="M4 19h16M7 15V9M12 15V5M17 15v-3"/></svg></i><div>траты: 1 250 ₽<small>финансовый трекер</small></div></div>
-      <div class="bub b3" style="--d:4"><i><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 10h16M9 5v14"/></svg></i><div>созвон в 15:00<small>планер на месяц</small></div></div>
-      <div class="bub b4" style="--d:1"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".5"/></svg></i><div>10 тренировок<small>цель на месяц</small></div></div>
-      <div class="bub b5" style="--d:3"><i><svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h5v16H6a2 2 0 0 1-2-2zM20 6a2 2 0 0 0-2-2h-5v16h5a2 2 0 0 0 2-2z"/></svg></i><div>чтение 20 стр<small>трекер привычек</small></div></div>
-      <div class="bub b6" style="--d:5"><i><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></i><div>цель года: 34%<small>цели на год</small></div></div>
-      <div class="bub b7" style="--d:6"><i><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></i><div>сон до 23:00<small>трекер привычек</small></div></div>
-      <div class="bub b8" style="--d:7"><i><svg viewBox="0 0 24 24"><path d="M5 9h14v10H5zM8 9V7a4 4 0 0 1 8 0v2M12 13v2"/></svg></i><div>отложено 15 000 ₽<small>финансовый трекер</small></div></div>
-      <div class="bub b9" style="--d:8"><i><svg viewBox="0 0 24 24"><path d="M4 17l5-5 4 4 7-7M15 9h5v5"/></svg></i><div>прибыль +18%<small>финмодель</small></div></div>
-      <div class="bub b10" style="--d:9"><i><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18h2"/></svg></i><div>задачи: 5 из 7<small>планер на месяц</small></div></div>
-      <div class="phone"><div class="screen">
-        <div class="scr-t">Трекер привычек</div>
-        <div class="scr-s">Октябрь</div>
-        <div class="ring">
-          <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="50" pathLength="100"/><circle class="fg" id="ring" cx="60" cy="60" r="50" pathLength="100"/></svg>
-          <div class="in"><b id="pct">0%</b><small><span id="cnt">0</span> из 30 дней</small></div>
-        </div>
-        <ul class="habits" id="habits">
-          <li><i class="chk"></i>Вода 2 л<span>27/30</span></li>
-          <li><i class="chk"></i>Спорт<span>10/12</span></li>
-          <li><i class="chk"></i>Чтение<span>21/30</span></li>
-          <li><i class="chk"></i>Сон до 23:00<span>18/30</span></li>
-        </ul>
-      </div></div>
     </div>
   </div>
 </section>
@@ -256,6 +230,7 @@
 // Первый экран: пузыри выплывают, кружок считает дни, галочки загораются
 (() => {
   const scene = document.getElementById('scene');
+  if (!scene) return;
   const ring = document.getElementById('ring'), pct = document.getElementById('pct'), cnt = document.getElementById('cnt');
   const checks = [...document.querySelectorAll('#habits .chk')];
   const done = 23, total = 30, target = Math.round(done / total * 100), dur = 4200;
@@ -281,6 +256,9 @@
   const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { io.disconnect(); setTimeout(run, 200); } }, { threshold: .35 });
   io.observe(scene);
 })();
+
+// Слоган: «не мотивация» зачёркивается, у «системы» появляется галочка и мятная плашка
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => document.getElementById('slogan').classList.add('play'), 300));
 
 // Фильтр каталога
 (() => {
