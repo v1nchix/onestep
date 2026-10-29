@@ -56,6 +56,19 @@ const DETAILS = {
   finmodel: { desc: 'Прибыль, маржинальность и все расходы бизнеса по месяцам.', how: ['Вносишь доходы и расходы бизнеса по месяцам', 'Реклама, зарплаты, налоги и подписки в одной картине', 'Таблица считает прибыль и маржинальность'], media: ['img/finmodel.webp'] }
 };
 
+// Открыть/закрыть окно. Если браузер не умеет <dialog> (старый встроенный браузер Телеграма), показываем окно сами.
+function openDialog(d) {
+  if (typeof d.showModal === 'function') { try { d.showModal(); return; } catch (e) {} }
+  d.setAttribute('open', ''); d.classList.add('dlg-fb'); document.documentElement.classList.add('dlg-lock');
+}
+function closeDialog(d) {
+  if (d.classList.contains('dlg-fb')) {
+    d.removeAttribute('open'); d.classList.remove('dlg-fb'); document.documentElement.classList.remove('dlg-lock');
+    d.dispatchEvent(new Event('close'));
+  } else if (typeof d.close === 'function') d.close();
+}
+const isOpen = d => d && d.hasAttribute('open');
+
 const rub = n => n.toLocaleString('ru-RU') + ' ₽';
 
 // Окно «Подробнее»: страница даёт <dialog id="product">, внутри [data-f="..."].
@@ -95,11 +108,11 @@ function initModal() {
         : `<img src="${src}" alt="${p.name}: как выглядит таблица">`).join('');
       dlg.classList.toggle('one-slide', slides.length < 2);
     }
-    dlg.showModal();
+    openDialog(dlg);
     if (track) show(0);
   }));
-  dlg.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => dlg.close()));
-  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => closeDialog(dlg)));
+  dlg.addEventListener('click', e => { if (e.target === dlg) closeDialog(dlg); });
   dlg.addEventListener('close', () => track && track.querySelectorAll('video').forEach(v => v.pause()));
 }
 

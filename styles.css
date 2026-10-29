@@ -629,3 +629,37 @@ dialog.payd .payNote{margin-top:6px;text-align:center}
   .pp-hero .price{margin-top:20px}
   .pp-hero .acts{margin-top:20px}
 }
+
+/* ===== 31.10: вариант D, зелёные карточки, появление дня, cookie, запасные окна ===== */
+/* вариант D: без пузырей, «система» просто зелёным */
+.bub{display:none!important}
+.hero h1 .plain{color:var(--green)}
+@media (min-width:1021px){.intro{height:auto!important;margin-top:0!important}.hero .wrap{align-items:center!important}}
+
+/* карточки, которые терялись на светлом фоне, теперь мятные */
+.pain-list li{background:var(--p1)}
+.pain-list span{color:var(--ink-2)}
+.steps li{background:var(--p1)}
+.steps span{color:var(--ink-2)}
+
+/* «пять минут в день»: карточка появляется вместе со своей галочкой */
+.js .tl li a{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.js .tl li.in a{opacity:1;transform:none}
+
+/* cookie: низкая плашка в одну строку, не закрывает кнопки */
+@media (max-width:700px){
+  .cookie{flex-direction:row;align-items:center;gap:12px;padding:10px 10px 10px 16px;border-radius:18px}
+  .cookie .btn{width:auto;height:40px;padding:0 18px}
+  body.has-cookie{padding-bottom:76px}
+}
+
+/* окна для браузеров без <dialog> */
+dialog:not([open]){display:none}
+dialog.dlg-fb{position:fixed;inset:0;margin:auto;z-index:100;box-shadow:0 0 0 100vmax rgba(30,74,61,.5)}
+html.dlg-lock{overflow:hidden}
+@media (max-width:860px){dialog.pm.dlg-fb,dialog.payd.dlg-fb{top:auto;bottom:0}}
+/* галочки и карточки дня загораются по очереди */
+.tl li:nth-child(2) .dot,.tl li:nth-child(2) a{transition-delay:.15s}
+.tl li:nth-child(3) .dot,.tl li:nth-child(3) a{transition-delay:.3s}
+.tl li:nth-child(4) .dot,.tl li:nth-child(4) a{transition-delay:.45s}
+.tl li:nth-child(5) .dot,.tl li:nth-child(5) a{transition-delay:.6s}

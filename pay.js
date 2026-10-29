@@ -22,19 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
       wrap.append(s); box.append(wrap); boxes[key] = wrap;
     }
     boxes[key].hidden = false;
-    const pr = document.getElementById('product'); if (pr && pr.open) pr.close();
-    pay.showModal();
+    const pr = document.getElementById('product'); if (isOpen(pr)) closeDialog(pr);
+    openDialog(pay);
     // пока форма грузится (бывает до 10 секунд), показываем «Загружаем форму оплаты»
     load.hidden = false;
     const t = setInterval(() => {
       const f = boxes[key].querySelector('iframe');
-      if ((f && f.offsetHeight > 0) || !pay.open) { load.hidden = true; clearInterval(t); }
+      if ((f && f.offsetHeight > 0) || !isOpen(pay)) { load.hidden = true; clearInterval(t); }
     }, 200);
   }
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-buy]'); if (!b) return;
     e.preventDefault(); openPay(b.dataset.buy);
   });
-  pay.querySelector('[data-close]').addEventListener('click', () => pay.close());
-  pay.addEventListener('click', e => { if (e.target === pay) pay.close(); });
+  pay.querySelector('[data-close]').addEventListener('click', () => closeDialog(pay));
+  pay.addEventListener('click', e => { if (e.target === pay) closeDialog(pay); });
 });
