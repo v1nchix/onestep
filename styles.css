@@ -803,3 +803,9 @@ dialog.payd{padding-top:56px}
 .fcols .logo img{height:44px}
 @media (max-width:700px){.logo img{height:28px}.fcols .logo img{height:38px}}
 @media (max-width:359px){.top .logo img{height:24px}}
+/* «пять минут в день»: те же прозрачные карточки с тонкой обводкой, у каждой свой цвет */
+.tl li:nth-child(1) a{background:rgba(36,123,104,.08)!important;box-shadow:inset 0 0 0 1px rgba(36,123,104,.2)}
+.tl li:nth-child(2) a{background:rgba(52,118,168,.08)!important;box-shadow:inset 0 0 0 1px rgba(52,118,168,.22)}
+.tl li:nth-child(3) a{background:rgba(160,150,20,.10)!important;box-shadow:inset 0 0 0 1px rgba(160,150,20,.26)}
+.tl li:nth-child(4) a{background:rgba(214,108,70,.08)!important;box-shadow:inset 0 0 0 1px rgba(214,108,70,.22)}
+.tl li:nth-child(5) a{background:rgba(96,150,56,.09)!important;box-shadow:inset 0 0 0 1px rgba(96,150,56,.24)}
