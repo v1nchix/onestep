@@ -866,3 +866,11 @@ html:not(.js) .stairs4 i:nth-child(1){height:30px}html:not(.js) .stairs4 i:nth-c
 .final4 .stairs3 + .acts{margin-top:36px}
 @media (max-width:700px){.stairs3{height:160px;margin-top:32px}}
 .stairs3 .arrow{transform-origin:0 0}
+/* ===== шапка: белая стеклянная, логотип в родных цветах (31.10) ===== */
+.top .wrap{background:rgba(255,255,255,.85);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);box-shadow:0 0 0 1px rgba(36,123,104,.14),0 14px 30px -20px rgba(16,37,30,.35);color:var(--ink)}
+.top nav a{color:var(--ink-2)!important}
+.top .btn{background:var(--green);color:#fff;box-shadow:0 8px 18px -10px rgba(36,123,104,.7)}
+@media (hover:hover) and (pointer:fine){
+  .top nav a:hover{color:var(--green)!important}
+  .top .btn:hover{background:var(--green-d)}
+}
