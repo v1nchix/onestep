@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>OneStep: варианты лестницы</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261031q"><style>
+.vlab{max-width:1132px;margin:0 auto;padding:0 24px;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+.vlab small{display:block;font-weight:500;font-size:14px;color:var(--muted);margin-top:4px}
+.again{flex:none;align-self:flex-start;padding:9px 16px;border-radius:100px;border:0;background:#fff;box-shadow:0 0 0 1.5px var(--rule);font:600 14px Onest;color:var(--ink);cursor:pointer}
+.vsec{padding:44px 0 56px;border-bottom:1px dashed #CFE3D8}
+.art3{width:min(620px,100%);height:240px;margin:28px auto 0;display:block}
+.art3 svg{width:100%;height:100%;overflow:visible}
+.sp{transform-box:fill-box;transform-origin:bottom;transition:transform .5s cubic-bezier(.2,.8,.2,1) calc(var(--i)*.13s),opacity .3s calc(var(--i)*.13s)}
+.curve{fill:none;stroke-width:7;stroke-linecap:round;stroke-dasharray:1;transition:stroke-dashoffset 1.2s cubic-bezier(.5,0,.2,1) .9s}
+.arrow{transition:opacity .2s 2.05s}
+.vsec:not(.go) .sp{transform:scaleY(0);opacity:0}
+.vsec:not(.go) .curve{stroke-dashoffset:1}
+.vsec:not(.go) .arrow{opacity:0}
+.v1 .sp,.v1 .arrow{fill:var(--ink)}.v1 .curve{stroke:var(--ink)}
+.v2 .outline{fill:none;stroke:var(--green);stroke-width:5;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;transition:stroke-dashoffset 1.2s ease}
+.v2:not(.go) .outline{stroke-dashoffset:1}
+.v2 .curve{stroke:rgba(36,123,104,.4)}.v2 .arrow{fill:rgba(36,123,104,.55)}
+.v3 .sp{fill:rgba(36,123,104,.12);stroke:rgba(36,123,104,.35);stroke-width:1.5}
+.v3 .sp:nth-of-type(5){fill:var(--green);stroke:none}
+.v3 .curve{stroke:var(--green)}.v3 .arrow{fill:var(--green)}
+.v3 .tick{fill:none;stroke:var(--green);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;transition:stroke-dashoffset .4s ease 1s}
+.v3:not(.go) .tick{stroke-dashoffset:1}
+.v4 .sp{fill:url(#g4)}.v4 .curve{stroke:url(#c4)}.v4 .arrow{fill:#1E4A3D}
+</style></head>
+<body style="padding-top:20px">
+<div class="vsec v1"><div class="vlab"><div>1. Как в логотипе<small>Тонкие ступеньки лежат прямо на дуге и поднимаются вместе с ней, как на вашем логотипе</small></div><button class="again">Повторить</button></div>
+<div class="art3"><svg viewBox="0 0 620 240" aria-hidden="true"><rect class="sp" x="120" y="184" width="63" height="18" rx="1" style="--i:0"/><rect class="sp" x="182" y="160" width="63" height="34" rx="1" style="--i:1"/><rect class="sp" x="244" y="136" width="63" height="45" rx="1" style="--i:2"/><rect class="sp" x="306" y="112" width="63" height="52" rx="1" style="--i:3"/><rect class="sp" x="368" y="88" width="63" height="53" rx="1" style="--i:4"/><rect class="sp" x="430" y="64" width="63" height="48" rx="1" style="--i:5"/><path class="curve" pathLength="1" d="M20 214 Q 340 236 585 66"/><path class="arrow" d="M0 0 L-42 -21 L-32 0 L-42 21 Z" transform="translate(592 61) rotate(-35)"/></svg></div></div>
+<div class="vsec v2"><div class="vlab"><div>2. Контур<small>Лестница одной тонкой линией, без заливки, дуга светлее. Самый лёгкий вариант</small></div><button class="again">Повторить</button></div>
+<div class="art3"><svg viewBox="0 0 620 240" aria-hidden="true"><path class="outline" pathLength="1" d="M60 148 V130 H132 V105 H204 V80 H276 V55 H348 V30 H420 V148 Z"/><path class="curve" pathLength="1" d="M20 214 Q 340 236 585 66"/><path class="arrow" d="M0 0 L-42 -21 L-32 0 L-42 21 Z" transform="translate(592 61) rotate(-35)"/></svg></div></div>
+<div class="vsec v3"><div class="vlab"><div>3. Прозрачные ступеньки с галочкой<small>Ступеньки в стиле карточек сайта, на верхней ставится галочка</small></div><button class="again">Повторить</button></div>
+<div class="art3"><svg viewBox="0 0 620 240" aria-hidden="true"><rect class="sp" x="60" y="130" width="73" height="18" rx="2" style="--i:0"/><rect class="sp" x="132" y="105" width="73" height="43" rx="2" style="--i:1"/><rect class="sp" x="204" y="80" width="73" height="68" rx="2" style="--i:2"/><rect class="sp" x="276" y="55" width="73" height="93" rx="2" style="--i:3"/><rect class="sp" x="348" y="30" width="73" height="118" rx="2" style="--i:4"/><path class="tick" pathLength="1" d="M372 2 l10 10 l20 -20"/><path class="curve" pathLength="1" d="M20 214 Q 340 236 585 66"/><path class="arrow" d="M0 0 L-42 -21 L-32 0 L-42 21 Z" transform="translate(592 61) rotate(-35)"/></svg></div></div>
+<div class="vsec v4"><div class="vlab"><div>4. Градиент роста<small>Ступеньки темнеют слева направо, от светло-мятного к тёмно-зелёному, как прогресс</small></div><button class="again">Повторить</button></div>
+<div class="art3"><svg viewBox="0 0 620 240" aria-hidden="true"><defs><linearGradient id="g4" gradientUnits="userSpaceOnUse" x1="60" y1="0" x2="420" y2="0"><stop offset="0" stop-color="#C9EEDB"/><stop offset="1" stop-color="#1E4A3D"/></linearGradient><linearGradient id="c4" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="585" y2="0"><stop offset="0" stop-color="#BFE0D2"/><stop offset="1" stop-color="#1E4A3D"/></linearGradient></defs><rect class="sp" x="60" y="130" width="73" height="18" rx="2" style="--i:0"/><rect class="sp" x="132" y="105" width="73" height="43" rx="2" style="--i:1"/><rect class="sp" x="204" y="80" width="73" height="68" rx="2" style="--i:2"/><rect class="sp" x="276" y="55" width="73" height="93" rx="2" style="--i:3"/><rect class="sp" x="348" y="30" width="73" height="118" rx="2" style="--i:4"/><path class="curve" pathLength="1" d="M20 214 Q 340 236 585 66"/><path class="arrow" d="M0 0 L-42 -21 L-32 0 L-42 21 Z" transform="translate(592 61) rotate(-35)"/></svg></div></div>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('go'), 200); io.unobserve(e.target); } }), { threshold: .45 });
+document.querySelectorAll('.vsec').forEach(s => { io.observe(s); s.querySelector('.again').addEventListener('click', () => { s.classList.remove('go'); void s.offsetWidth; setTimeout(() => s.classList.add('go'), 350); }); });
+</script>
+</body></html>
