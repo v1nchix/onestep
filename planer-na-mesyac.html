@@ -17,9 +17,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261031c">
-<script src="shared.js?v=20261031c"></script>
-<script src="pay.js?v=20261031c"></script>
+<link rel="stylesheet" href="styles.css?v=20261031g">
+<script src="shared.js?v=20261031g"></script>
+<script src="pay.js?v=20261031g"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Планер на месяц в Google Таблицах", "description": "Планер на месяц в Google Таблицах: задачи и встречи по дням, статусы, приоритеты и загрузка недели. Спокойный дизайн, работает с телефона. 599 ₽.", "image": "https://onestep-sheets.ru/img/planner.webp", "brand": {"@type": "Brand", "name": "OneStep"}, "offers": {"@type": "Offer", "price": 599, "priceCurrency": "RUB", "availability": "https://schema.org/InStock", "url": "https://onestep-sheets.ru/planer-na-mesyac.html"}}</script>
 </head>
 <body id="top" class="pp">
@@ -41,7 +41,11 @@
         <p class="once">Разовая покупка. Без подписки, таблица остаётся у тебя навсегда.</p>
         <div class="acts"><a class="btn btn-g" href="#" data-buy="planner">Купить</a><a class="btn btn-w" href="https://t.me/onestep_support" target="_blank" rel="noopener">Задать вопрос</a></div>
       </div>
-      <div class="pp-shot"><img src="img/planner.webp" alt="Планер на месяц в Google Таблицах" width="1400" height="700"></div>
+      <div class="fan" tabindex="0" aria-label="Скриншоты таблицы «Планер на месяц»: наведи или нажми, чтобы разложить веером">
+          <img class="f1" src="img/planner-a.webp" alt="Планер на месяц: левая часть таблицы" loading="lazy">
+          <img class="f2" src="img/planner-b.webp" alt="Планер на месяц: правая часть таблицы" loading="lazy">
+          <img class="f3" src="img/planner.webp" alt="Планер на месяц в Google Таблицах целиком">
+        </div>
     </div>
   </div>
 </section>
@@ -75,7 +79,7 @@
 <section class="pp-sec">
   <div class="wrap">
     <h2>другие таблицы</h2>
-    <ul class="pp-more"><li><a href="trekker-privychek.html"><b>Трекер привычек</b><span>499 ₽</span></a></li><li><a href="celi-na-god.html"><b>Цели на год</b><span>859 ₽</span></a></li><li><a href="finansovyj-treker.html"><b>Финансовый трекер</b><span>799 ₽</span></a></li><li><a href="finansovaya-dekompoziciya.html"><b>Финансовая декомпозиция</b><span>549 ₽</span></a></li><li><a href="finmodel-dlya-biznesa.html"><b>Финмодель для бизнеса</b><span>1 499 ₽</span></a></li></ul>
+    <ul class="pp-more"><li><a href="trekker-privychek.html"><img src="img/habits.webp" alt="Трекер привычек" loading="lazy"><b>Трекер привычек</b><span>499 ₽</span></a></li><li><a href="celi-na-god.html"><img src="img/goals.webp" alt="Цели на год" loading="lazy"><b>Цели на год</b><span>859 ₽</span></a></li><li><a href="finansovyj-treker.html"><img src="img/finance.webp" alt="Финансовый трекер" loading="lazy"><b>Финансовый трекер</b><span>799 ₽</span></a></li><li><a href="finansovaya-dekompoziciya.html"><img src="img/decomp.webp" alt="Финансовая декомпозиция" loading="lazy"><b>Финансовая декомпозиция</b><span>549 ₽</span></a></li><li><a href="finmodel-dlya-biznesa.html"><img src="img/finmodel.webp" alt="Финмодель для бизнеса" loading="lazy"><b>Финмодель для бизнеса</b><span>1 499 ₽</span></a></li></ul>
   </div>
 </section>
 </main>
@@ -90,5 +94,9 @@
   <div class="payBox" id="payBox" tabindex="-1" autofocus></div>
   <p class="payNote">Письма нет через 15 минут? Проверь «Спам» или <a href="https://t.me/onestep_support" target="_blank" rel="noopener">напиши нам</a>.</p>
 </dialog>
+<script>
+// Веер скриншотов: на телефоне раскрывается касанием
+document.querySelectorAll('.fan').forEach(f => f.addEventListener('click', () => f.classList.toggle('open')));
+</script>
 </body>
 </html>
