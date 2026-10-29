@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>OneStep: варианты карточек</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261031g">
+<style>
+.vlab{max-width:1132px;margin:0 auto;padding:0 24px;font-weight:700;font-size:18px;color:var(--ink)}
+.vlab small{display:block;font-weight:500;font-size:14px;color:var(--muted);margin-top:4px}
+.vsec{padding:56px 0 72px;border-bottom:1px dashed #CFE3D8}
+.vsec .steps{margin-top:28px}
+/* 1. прозрачный зелёный */
+.v1 .steps li{background:rgba(36,123,104,.07);box-shadow:inset 0 0 0 1px rgba(36,123,104,.16)}
+/* 2. белые с обводкой */
+.v2 .steps li{background:#fff;box-shadow:0 0 0 1.5px #CFE3D8,0 14px 30px -22px rgba(16,37,30,.35)}
+/* 3. стекло на мягком зелёном фоне */
+.v3{background:radial-gradient(60% 80% at 20% 30%,#D3EFE1 0,transparent 70%),radial-gradient(50% 70% at 85% 70%,#E3F2C9 0,transparent 70%)}
+.v3 .steps li{background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 18px 36px -26px rgba(16,37,30,.4)}
+/* 4. без карточек, шаги на линии */
+.v4 .steps{position:relative}
+.v4 .steps::before{content:"";position:absolute;left:46px;right:46px;top:46px;border-top:2px dashed #BCD5CA}
+.v4 .steps li{background:none;position:relative;padding:24px 22px 0}
+.v4 .steps li::before{position:relative;z-index:1;box-shadow:0 0 0 8px var(--paper)}
+@media (max-width:700px){.v4 .steps::before{display:none}}
+</style>
+</head>
+<body style="padding-top:20px">
+<div class="vsec v1"><p class="vlab">1. Прозрачный зелёный<small>Лёгкая зелёная дымка и тонкая зелёная обводка</small></p><div class="wrap"><ol class="steps"><li><b>Выбери таблицу</b></li><li><b>Оплати</b></li><li><b>Получи письмо</b><span>Через 10–15 минут</span></li><li><b>Сделай копию</b><span>В свой Google Диск</span></li></ol></div></div>
+<div class="vsec v2"><p class="vlab">2. Белые с обводкой<small>Белые карточки, видны за счёт обводки и мягкой тени</small></p><div class="wrap"><ol class="steps"><li><b>Выбери таблицу</b></li><li><b>Оплати</b></li><li><b>Получи письмо</b><span>Через 10–15 минут</span></li><li><b>Сделай копию</b><span>В свой Google Диск</span></li></ol></div></div>
+<div class="vsec v3"><p class="vlab">3. Стекло<small>Полупрозрачные матовые карточки на мягком зелёном фоне</small></p><div class="wrap"><ol class="steps"><li><b>Выбери таблицу</b></li><li><b>Оплати</b></li><li><b>Получи письмо</b><span>Через 10–15 минут</span></li><li><b>Сделай копию</b><span>В свой Google Диск</span></li></ol></div></div>
+<div class="vsec v4"><p class="vlab">4. Без карточек<small>Только номера на пунктирной линии, как путь</small></p><div class="wrap"><ol class="steps"><li><b>Выбери таблицу</b></li><li><b>Оплати</b></li><li><b>Получи письмо</b><span>Через 10–15 минут</span></li><li><b>Сделай копию</b><span>В свой Google Диск</span></li></ol></div></div>
+</body>
+</html>
