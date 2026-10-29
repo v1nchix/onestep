@@ -792,3 +792,14 @@ dialog.payd{padding-top:56px}
   .fan.open .f1,.fan:focus-visible .f1,.fan:hover .f1{transform:rotate(-9deg) translate(-11%,5%)}
   .fan.open .f2,.fan:focus-visible .f2,.fan:hover .f2{transform:rotate(8deg) translate(11%,5%)}
 }
+/* ===== карточки «прозрачный зелёный» по всему сайту (31.10) ===== */
+.pain-list li,.steps li,.faq details,.vs-col:not(.vs-our),.help,.bundle,.art-list a,.art-cta,.pp-more a,.rev{
+  background:rgba(36,123,104,.07);box-shadow:inset 0 0 0 1px rgba(36,123,104,.16)}
+.faq details p,.vs-col:not(.vs-our) ul,.rev-who span{color:var(--ink-2)}
+.help-c a{background:#fff}
+
+/* ===== логотип OneStep ===== */
+.logo img{display:block;height:34px;width:auto}
+.fcols .logo img{height:44px}
+@media (max-width:700px){.logo img{height:28px}.fcols .logo img{height:38px}}
+@media (max-width:359px){.top .logo img{height:24px}}
