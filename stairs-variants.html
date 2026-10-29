@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>OneStep: варианты лестницы</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261031l">
+<style>
+.vlab{max-width:1132px;margin:0 auto;padding:0 24px;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.vlab small{display:block;font-weight:500;font-size:14px;color:var(--muted);margin-top:4px}
+.again{flex:none;padding:9px 16px;border-radius:100px;border:0;background:#fff;box-shadow:0 0 0 1.5px var(--rule);font:600 14px Onest;color:var(--ink);cursor:pointer}
+.vsec{padding:48px 0 64px;border-bottom:1px dashed #CFE3D8}
+.fin{text-align:center;margin-top:24px}
+.fin h2{max-width:15ch;margin:0 auto}
+.fin p{margin-top:14px;font-size:18px;color:var(--ink-2)}
+.fin .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.stg{position:relative;margin:48px auto 0;width:min(560px,100%);height:200px}
+.st{position:absolute;bottom:0;width:20%;border-radius:12px 12px 0 0;background:rgba(36,123,104,.12);box-shadow:inset 0 0 0 1px rgba(36,123,104,.2);height:0;transition:height .7s cubic-bezier(.2,.8,.2,1)}
+.st:nth-child(1){left:0}.st:nth-child(2){left:20%}.st:nth-child(3){left:40%}.st:nth-child(4){left:60%}.st:nth-child(5){left:80%;background:var(--green)}
+.go .st:nth-child(1){height:40px}.go .st:nth-child(2){height:75px;transition-delay:.1s}.go .st:nth-child(3){height:110px;transition-delay:.2s}.go .st:nth-child(4){height:145px;transition-delay:.3s}.go .st:nth-child(5){height:180px;transition-delay:.4s}
+
+/* 1. шарик поднимается по ступенькам */
+.ball{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--green);box-shadow:0 6px 14px -4px rgba(36,123,104,.6);left:calc(10% - 13px);bottom:0;opacity:0}
+.v1.go .ball{opacity:1;animation:climb 3.2s cubic-bezier(.4,0,.2,1) .9s forwards}
+@keyframes climb{
+  0%{left:calc(10% - 13px);bottom:40px}
+  12%{left:calc(20% - 13px);bottom:110px}20%{left:calc(30% - 13px);bottom:75px}
+  32%{left:calc(40% - 13px);bottom:145px}40%{left:calc(50% - 13px);bottom:110px}
+  52%{left:calc(60% - 13px);bottom:180px}60%{left:calc(70% - 13px);bottom:145px}
+  72%{left:calc(80% - 13px);bottom:215px}80%,100%{left:calc(90% - 13px);bottom:180px;background:#fff;box-shadow:inset 0 0 0 3px var(--green)}}
+.flag{position:absolute;left:calc(90% - 16px);bottom:186px;width:32px;height:32px;border-radius:50%;background:var(--green);display:grid;place-items:center;opacity:0;transform:scale(.4);transition:opacity .3s 3.7s,transform .4s cubic-bezier(.2,.9,.3,1.5) 3.7s}
+.flag::after{content:"";width:7px;height:13px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.v1.go .flag{opacity:1;transform:none}
+
+/* 2. столбики прогресса с днями */
+.v2 .st span{position:absolute;left:0;right:0;top:-28px;font-size:13px;font-weight:700;color:var(--green);opacity:0;transition:opacity .3s}
+.v2 .st em{position:absolute;left:0;right:0;bottom:-26px;font-style:normal;font-size:12px;color:var(--muted)}
+.v2.go .st span{opacity:1}
+.v2 .st:nth-child(2) span{transition-delay:.5s}.v2 .st:nth-child(3) span{transition-delay:.6s}.v2 .st:nth-child(4) span{transition-delay:.7s}.v2 .st:nth-child(5) span{transition-delay:.8s}
+.v2 .stg{margin-bottom:24px}
+
+/* 3. лестница со стрелкой, как в логотипе */
+.v3 .stg{height:220px}
+.v3 svg{width:100%;height:100%;overflow:visible}
+.v3 .path{fill:none;stroke:var(--green);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1)}
+.v3 .curve{fill:none;stroke:rgba(36,123,104,.35);stroke-width:5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s ease .2s}
+.v3 .arrow{fill:var(--green);opacity:0;transform-origin:540px 30px;transform:scale(.3);transition:opacity .3s 1.8s,transform .4s cubic-bezier(.2,.9,.3,1.6) 1.8s}
+.v3.go .path,.v3.go .curve{stroke-dashoffset:0}
+.v3.go .arrow{opacity:1;transform:none}
+
+/* 4. ступеньки-галочки */
+.v4 .st::after{content:"";position:absolute;left:50%;top:14px;width:24px;height:24px;margin-left:-12px;border-radius:8px;background:#fff;box-shadow:inset 0 0 0 2px #AFC3BA}
+.v4 .st::before{content:"";position:absolute;left:50%;top:19px;width:6px;height:11px;margin-left:-3px;border:solid var(--green);border-width:0 3px 3px 0;transform:rotate(45deg) scale(0);z-index:1;transition:transform .3s cubic-bezier(.2,.9,.3,1.5)}
+.v4.go .st::before{transform:rotate(45deg) scale(1)}
+.v4.go .st:nth-child(1)::before{transition-delay:.9s}.v4.go .st:nth-child(2)::before{transition-delay:1.2s}.v4.go .st:nth-child(3)::before{transition-delay:1.5s}.v4.go .st:nth-child(4)::before{transition-delay:1.8s}.v4.go .st:nth-child(5)::before{transition-delay:2.1s}
+.v4 .st:nth-child(5)::after{background:#fff;box-shadow:none}
+@media (max-width:700px){.stg{height:160px}.go .st:nth-child(1){height:30px}.go .st:nth-child(2){height:58px}.go .st:nth-child(3){height:86px}.go .st:nth-child(4){height:114px}.go .st:nth-child(5){height:142px}
+  .v1 .ball,.v1 .flag{display:none}.fin .acts .btn{flex:1 1 100%}}
+</style>
+</head>
+<body style="padding-top:20px">
+
+<div class="vsec v1"><div class="vlab"><div>1. Шарик поднимается<small>Ступеньки вырастают, шарик прыгает по ним наверх, на вершине галочка</small></div><button class="again">Повторить</button></div><div class="wrap fin">
+<h2>маленький шаг сегодня</h2><p>Через месяц ты удивишься, как высоко поднялся.</p>
+<div class="acts"><a class="btn btn-g" href="index.html#catalog">Выбрать таблицу</a><a class="btn btn-w" href="https://t.me/onestep_sheets">Бесплатный шаблон</a></div>
+<div class="stg"><i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i><i class="ball"></i><i class="flag"></i></div></div></div>
+
+<div class="vsec v2"><div class="vlab"><div>2. Ступеньки-дни<small>Каждая ступенька подписана днём, над ней растёт процент, последняя — 30 дней и 100%</small></div><button class="again">Повторить</button></div><div class="wrap fin">
+<h2>30 дней, и это уже привычка</h2><p>Каждая галочка поднимает на ступеньку выше.</p>
+<div class="acts"><a class="btn btn-g" href="index.html#catalog">Выбрать таблицу</a><a class="btn btn-w" href="https://t.me/onestep_sheets">Бесплатный шаблон</a></div>
+<div class="stg"><i class="st"><span>20%</span><em>1 день</em></i><i class="st"><span>40%</span><em>7 дней</em></i><i class="st"><span>60%</span><em>14 дней</em></i><i class="st"><span>80%</span><em>21 день</em></i><i class="st"><span>100%</span><em>30 дней</em></i></div></div></div>
+
+<div class="vsec v3"><div class="vlab"><div>3. Лестница со стрелкой, как в логотипе<small>Ступеньки рисуются одной линией, снизу дуга, и наверху выстреливает стрелка</small></div><button class="again">Повторить</button></div><div class="wrap fin">
+<h2>шаг за шагом вверх</h2><p>Не нужно прыгать. Достаточно не останавливаться.</p>
+<div class="acts"><a class="btn btn-g" href="index.html#catalog">Выбрать таблицу</a><a class="btn btn-w" href="https://t.me/onestep_sheets">Бесплатный шаблон</a></div>
+<div class="stg"><svg viewBox="0 0 560 220" aria-hidden="true"><path class="curve" pathLength="1" d="M20 215 Q 300 230 520 60"/><path class="path" pathLength="1" d="M60 200 H150 V160 H240 V120 H330 V80 H420 V45 H520"/><path class="arrow" d="M512 22 L556 34 L520 62 Z"/></svg></div></div></div>
+
+<div class="vsec v4"><div class="vlab"><div>4. Ступеньки-галочки<small>Ступеньки вырастают, и на каждой по очереди ставится галочка, как в трекере</small></div><button class="again">Повторить</button></div><div class="wrap fin">
+<h2>каждая галочка — ступенька вверх</h2><p>Начни с одной. Остальные поставишь сам.</p>
+<div class="acts"><a class="btn btn-g" href="index.html#catalog">Выбрать таблицу</a><a class="btn btn-w" href="https://t.me/onestep_sheets">Бесплатный шаблон</a></div>
+<div class="stg"><i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i><i class="st"></i></div></div></div>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('go'), 200); io.unobserve(e.target); } }), { threshold: .45 });
+document.querySelectorAll('.vsec').forEach(s => {
+  io.observe(s);
+  s.querySelector('.again').addEventListener('click', () => { s.classList.remove('go'); void s.offsetWidth; setTimeout(() => s.classList.add('go'), 350); });
+});
+</script>
+</body>
+</html>

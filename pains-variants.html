@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>OneStep: анимация «узнаёшь себя»</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261031l">
+<style>
+.vlab{max-width:1132px;margin:0 auto;padding:0 24px;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.vlab small{display:block;font-weight:500;font-size:14px;color:var(--muted);margin-top:4px}
+.again{flex:none;padding:9px 16px;border-radius:100px;border:0;background:#fff;box-shadow:0 0 0 1.5px var(--rule);font:600 14px Onest;color:var(--ink);cursor:pointer}
+.vsec{padding:48px 0 60px;border-bottom:1px dashed #CFE3D8}
+.vsec .pain-list{margin-top:28px}
+.pl li{position:relative;overflow:hidden;min-height:150px}
+.sol{display:block;margin-top:12px;font-weight:700;color:var(--green)}
+
+/* 1. зачёркивание и решение */
+.a1 .pl b{position:relative;display:inline-block}
+.a1 .pl b::after{content:"";position:absolute;left:-2%;right:-2%;top:55%;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.7,0,.3,1)}
+.a1 .pl .sol{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.a1.go .pl b::after{transform:none}
+.a1.go .pl .sol{opacity:1;transform:none}
+.a1 .pl li:nth-child(2) b::after,.a1 .pl li:nth-child(2) .sol{transition-delay:.6s}
+.a1 .pl li:nth-child(3) b::after,.a1 .pl li:nth-child(3) .sol{transition-delay:1.2s}
+.a1 .pl .sol{transition-delay:.45s}
+.a1 .pl li:nth-child(2) .sol{transition-delay:1.05s}.a1 .pl li:nth-child(3) .sol{transition-delay:1.65s}
+
+/* 2. переворот карточки */
+.a2 .pl li{background:none!important;box-shadow:none!important;padding:0;perspective:900px}
+.a2 .flip{position:relative;height:150px;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,.7,.2,1)}
+.a2 .side{position:absolute;inset:0;padding:28px;border-radius:28px;backface-visibility:hidden}
+.a2 .front{background:rgba(36,123,104,.07);box-shadow:inset 0 0 0 1px rgba(36,123,104,.16)}
+.a2 .back{background:var(--green);color:#fff;transform:rotateY(180deg)}
+.a2 .back b{color:#fff}.a2 .back span{color:rgba(255,255,255,.85)!important}
+.a2.go .flip{transform:rotateY(180deg)}
+.a2 .pl li:nth-child(2) .flip{transition-delay:.5s}.a2 .pl li:nth-child(3) .flip{transition-delay:1s}
+
+/* 3. галочка ставится, текст меняется */
+.a3 .pl li{padding-left:76px}
+.a3 .box{position:absolute;left:24px;top:28px;width:32px;height:32px;border-radius:10px;box-shadow:inset 0 0 0 2px #AFC3BA;background:#fff;transition:background .3s,box-shadow .3s}
+.a3 .box::after{content:"";position:absolute;left:11px;top:6px;width:8px;height:15px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) scale(0);transition:transform .3s cubic-bezier(.2,.9,.3,1.5)}
+.a3 .t{transition:opacity .35s}
+.a3 .t2{position:absolute;left:76px;right:24px;top:28px;opacity:0;transition:opacity .35s}
+.a3 .t2 b{color:var(--green)}
+.a3.go .box{background:var(--green);box-shadow:none}
+.a3.go .box::after{transform:rotate(45deg) scale(1)}
+.a3.go .t{opacity:0}.a3.go .t2{opacity:1}
+.a3 .pl li:nth-child(2) *{transition-delay:.6s}.a3 .pl li:nth-child(3) *{transition-delay:1.2s}
+
+/* 4. карточки выезжают стопкой и раскладываются */
+.a4 .pl li{transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.a4:not(.go) .pl li:nth-child(1){transform:translateX(100%) rotate(-4deg)}
+.a4:not(.go) .pl li:nth-child(3){transform:translateX(-100%) rotate(4deg)}
+.a4:not(.go) .pl li:nth-child(2){transform:scale(1.04)}
+.a4 .pl li:nth-child(2){position:relative;z-index:2}
+.a4 .pl li:nth-child(1),.a4 .pl li:nth-child(3){transition-delay:.25s}
+@media (max-width:1020px){.a4:not(.go) .pl li:nth-child(1){transform:translateY(40px)}.a4:not(.go) .pl li:nth-child(3){transform:translateY(-40px)}}
+</style>
+</head>
+<body style="padding-top:20px">
+
+<div class="vsec a1"><div class="vlab"><div>1. Зачёркивание и решение<small>Боль перечёркивается, под ней появляется ответ OneStep. По очереди, как слоган наверху</small></div><button class="again">Повторить</button></div><div class="wrap"><ul class="pain-list pl">
+<li><b>«С понедельника начну»</b><span>И через неделю всё сначала.</span><em class="sol">→ Видишь серию и не хочешь её терять</em></li>
+<li><b>Деньги куда-то уходят</b><span>К концу месяца непонятно, на что.</span><em class="sol">→ Видишь каждую трату по категориям</em></li>
+<li><b>Дел много, толку мало</b><span>День забит, а ты на месте.</span><em class="sol">→ Видишь, что уже сделано за месяц</em></li>
+</ul></div></div>
+
+<div class="vsec a2"><div class="vlab"><div>2. Переворот карточки<small>Карточка с болью переворачивается, а на обороте ответ на зелёном</small></div><button class="again">Повторить</button></div><div class="wrap"><ul class="pain-list pl">
+<li><div class="flip"><div class="side front"><b>«С понедельника начну»</b><span>И через неделю всё сначала.</span></div><div class="side back"><b>Серия, которую жалко терять</b><span>Трекер считает дни подряд и проценты.</span></div></div></li>
+<li><div class="flip"><div class="side front"><b>Деньги куда-то уходят</b><span>К концу месяца непонятно, на что.</span></div><div class="side back"><b>Видно каждую трату</b><span>Расходы по категориям и план на месяц.</span></div></div></li>
+<li><div class="flip"><div class="side front"><b>Дел много, толку мало</b><span>День забит, а ты на месте.</span></div><div class="side back"><b>Видно, что уже сделано</b><span>Задачи по дням и прогресс за месяц.</span></div></div></li>
+</ul></div></div>
+
+<div class="vsec a3"><div class="vlab"><div>3. Галочка ставится<small>В каждой карточке ставится галочка, и боль сменяется результатом</small></div><button class="again">Повторить</button></div><div class="wrap"><ul class="pain-list pl">
+<li><i class="box"></i><div class="t"><b>«С понедельника начну»</b><span>И через неделю всё сначала.</span></div><div class="t2"><b>Месяц без пропусков</b><span>Галочка в день, и серия растёт.</span></div></li>
+<li><i class="box"></i><div class="t"><b>Деньги куда-то уходят</b><span>К концу месяца непонятно, на что.</span></div><div class="t2"><b>Деньги под контролем</b><span>Видно, куда уходит каждый рубль.</span></div></li>
+<li><i class="box"></i><div class="t"><b>Дел много, толку мало</b><span>День забит, а ты на месте.</span></div><div class="t2"><b>Месяц по шагам</b><span>Видно, что сделано и что дальше.</span></div></li>
+</ul></div></div>
+
+<div class="vsec a4"><div class="vlab"><div>4. Карточки раскладываются<small>Три карточки лежат стопкой и разъезжаются по местам, когда до них долистали</small></div><button class="again">Повторить</button></div><div class="wrap"><ul class="pain-list pl">
+<li><b>«С понедельника начну»</b><span>И через неделю всё сначала.</span></li>
+<li><b>Деньги куда-то уходят</b><span>К концу месяца непонятно, на что.</span></li>
+<li><b>Дел много, толку мало</b><span>День забит, а ты на месте.</span></li>
+</ul></div></div>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('go'), 300); io.unobserve(e.target); } }), { threshold: .5 });
+document.querySelectorAll('.vsec').forEach(s => {
+  io.observe(s);
+  s.querySelector('.again').addEventListener('click', () => { s.classList.remove('go'); void s.offsetWidth; setTimeout(() => s.classList.add('go'), 400); });
+});
+</script>
+</body>
+</html>
