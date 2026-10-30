@@ -4,8 +4,8 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 
 const SHOTS = {
-  habits:   ['1SZAeDLNtjzZsrmgaD6eoPPQV4_HzWCJzhaoGFQmBsig', [['a', 'OneStep Трекер Привычек', 'A60', 'A19'], ['b', 'OneStep Трекер Привычек', 'BA20', 'Q20'], ['c', 'Инструкция', 'A1', 'A1']]],
-  goals:    ['1v9XrbhrngNLV_dN4zxHgPy6Te48OWYmCJ3wdU7oLduU', [['a', 'Карта жизни', 'A1', 'A1'], ['b', 'Колесо Баланса', 'A40', 'A5'], ['c', 'Инструкция', 'A1', 'A1']]],
+  habits:   ['1SZAeDLNtjzZsrmgaD6eoPPQV4_HzWCJzhaoGFQmBsig', [['a', 'OneStep Трекер Привычек', 'A60', 'A19'], ['b', 'OneStep Трекер Привычек', 'AI20', 'Q20'], ['c', 'Инструкция', 'A1', 'A1']]],
+  goals:    ['1v9XrbhrngNLV_dN4zxHgPy6Te48OWYmCJ3wdU7oLduU', [['a', 'Карта жизни', 'A1', 'A1'], ['b', 'Колесо Баланса', 'A28', 'A5'], ['c', 'Инструкция', 'A1', 'A1']]],
   finance:  ['11h0GZkno7uF84QXfKLPNXE4ldW-qtspB96SqH_WjLS0', [['a', 'Главная', 'A70', 'A30'], ['b', 'Операции', 'A1', 'A1'], ['c', 'Инструкция', 'A1', 'A1']]],
   decomp:   ['1yv2r1WM_P_KkqJtCfHhudRQi4ZTyzDVq84Z1jB56yWg', [['a', 'Декомпозиция', 'A1', 'A1'], ['b', 'Декомпозиция', 'A52', 'A25'], ['c', 'Инструкция', 'A1', 'A1']]],
   planner:  ['1nox0FHr3hQfcnBGF07ukEIGIRLJ09WUpUDAAuAvzp3k', [['a', 'Планер на месяц', 'A1', 'A1'], ['b', 'Планер на месяц', 'CG1', 'AN1'], ['c', 'Инструкция', 'A1', 'A1']]],
@@ -14,7 +14,7 @@ const SHOTS = {
 
 fs.mkdirSync('out/shots', { recursive: true });
 const browser = await chromium.launch();
-for (const [key, [id, list]] of Object.entries(SHOTS)) {
+for (const [key, [id, list]] of Object.entries(SHOTS).filter(([k]) => !process.env.ONLY || process.env.ONLY.split(',').includes(k))) {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2, locale: 'ru-RU' });
   const page = await ctx.newPage();
   try {
