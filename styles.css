@@ -887,3 +887,6 @@ dialog.pm{max-height:calc(100vh - 12px)}
 @media (min-width:861px){dialog.dlg-fb{inset:0!important;margin:auto!important}}
 dialog.pm.dlg-fb{height:calc(100vh - 12px)}
 @supports (height:100dvh){dialog.pm.dlg-fb{height:calc(100dvh - 12px)}}
+/* ===== видео заполнения таблицы на страницах таблиц ===== */
+.pp-video{display:block;width:100%;height:auto;aspect-ratio:2880/1558;margin-top:26px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px var(--rule),0 24px 48px -26px rgba(16,37,30,.45)}
+@media (max-width:640px){.pp-video{border-radius:14px;margin-top:18px}}
