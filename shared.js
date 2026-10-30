@@ -48,12 +48,12 @@ const PRODUCTS = {
 // Окно таблицы: короткое описание, три шага «как это работает» и слайды.
 // Слайды: картинки сейчас, позже сюда встанут видео (.mp4) с демо-таблиц.
 const DETAILS = {
-  habits: { desc: 'Отмечай привычки и смотри прогресс по месяцам и за год.', how: ['Отмечаешь привычку галочкой, это 5 секунд в день', 'Проценты и прогресс за месяц считаются сами', 'История сохраняется: видно, как меняется весь год'], media: ['img/habits.webp'] },
-  goals: { desc: 'Цели по всем сферам жизни, с кварталами и дедлайнами.', how: ['Оцениваешь сферы жизни в колесе баланса', 'Ставишь цели по кварталам и с дедлайнами', 'Отмечаешь шаги, прогресс считается в процентах'], media: ['img/goals.webp'] },
-  finance: { desc: 'Доходы, расходы и план трат на следующий месяц.', how: ['Вписываешь доходы и траты по категориям', 'Таблица показывает, куда уходят деньги', 'Планируешь бюджет на следующий месяц'], media: ['img/finance.webp'] },
-  decomp: { desc: 'Посчитай, окупится ли идея, до того как вкладывать деньги.', how: ['Вписываешь цель по деньгам и цену продукта', 'Таблица считает, сколько нужно продаж и клиентов', 'Видишь, окупится ли идея, ещё до вложений'], media: ['img/decomp.webp'] },
-  planner: { desc: 'Задачи, встречи и приоритеты месяца в одной таблице.', how: ['Записываешь задачи и встречи по дням', 'Ставишь статусы и видишь загрузку недели', 'Месяц раскладывается по шагам без перегруза'], media: ['img/planner.webp'] },
-  finmodel: { desc: 'Прибыль, маржинальность и все расходы бизнеса по месяцам.', how: ['Вносишь доходы и расходы бизнеса по месяцам', 'Реклама, зарплаты, налоги и подписки в одной картине', 'Таблица считает прибыль и маржинальность'], media: ['img/finmodel.webp'] }
+  habits: { desc: 'Отмечай привычки и смотри прогресс по месяцам и за год.', how: ['Отмечаешь привычку галочкой, это 5 секунд в день', 'Проценты и прогресс за месяц считаются сами', 'История сохраняется: видно, как меняется весь год'], media: ['img/habits.mp4', 'img/habits.webp', 'img/habits-a.webp', 'img/habits-b.webp'] },
+  goals: { desc: 'Цели по всем сферам жизни, с кварталами и дедлайнами.', how: ['Оцениваешь сферы жизни в колесе баланса', 'Ставишь цели по кварталам и с дедлайнами', 'Отмечаешь шаги, прогресс считается в процентах'], media: ['img/goals.mp4', 'img/goals.webp', 'img/goals-a.webp', 'img/goals-b.webp'] },
+  finance: { desc: 'Доходы, расходы и план трат на следующий месяц.', how: ['Вписываешь доходы и траты по категориям', 'Таблица показывает, куда уходят деньги', 'Планируешь бюджет на следующий месяц'], media: ['img/finance.mp4', 'img/finance.webp', 'img/finance-a.webp', 'img/finance-b.webp'] },
+  decomp: { desc: 'Посчитай, окупится ли идея, до того как вкладывать деньги.', how: ['Вписываешь цель по деньгам и цену продукта', 'Таблица считает, сколько нужно продаж и клиентов', 'Видишь, окупится ли идея, ещё до вложений'], media: ['img/decomp.mp4', 'img/decomp.webp', 'img/decomp-a.webp', 'img/decomp-b.webp'] },
+  planner: { desc: 'Задачи, встречи и приоритеты месяца в одной таблице.', how: ['Записываешь задачи и встречи по дням', 'Ставишь статусы и видишь загрузку недели', 'Месяц раскладывается по шагам без перегруза'], media: ['img/planner.mp4', 'img/planner.webp', 'img/planner-a.webp', 'img/planner-b.webp'] },
+  finmodel: { desc: 'Прибыль, маржинальность и все расходы бизнеса по месяцам.', how: ['Вносишь доходы и расходы бизнеса по месяцам', 'Реклама, зарплаты, налоги и подписки в одной картине', 'Таблица считает прибыль и маржинальность'], media: ['img/finmodel.mp4', 'img/finmodel.webp', 'img/finmodel-a.webp', 'img/finmodel-b.webp'] }
 };
 
 // Открыть/закрыть окно. Если браузер не умеет <dialog> (старый встроенный браузер Телеграма), показываем окно сами.
@@ -99,7 +99,7 @@ function initModal() {
     slide = (i + slides.length) % slides.length;
     track.style.transform = `translateX(-${slide * 100}%)`;
     if (count) count.textContent = `${slide + 1} / ${slides.length}`;
-    track.querySelectorAll('video').forEach((v, k) => k === slide ? v.play().catch(() => {}) : v.pause());
+    [...track.children].forEach((el, k) => el.tagName === 'VIDEO' && (k === slide ? el.play().catch(() => {}) : el.pause()));
   }
   dlg.querySelectorAll('[data-slide]').forEach(b => b.addEventListener('click', () => show(slide + +b.dataset.slide)));
   document.querySelectorAll('[data-more]').forEach(btn => btn.addEventListener('click', e => {
@@ -119,8 +119,8 @@ function initModal() {
     if (track) {
       slides = d.media;
       track.innerHTML = slides.map(src => /\.mp4$/.test(src)
-        ? `<video src="${src}" muted playsinline loop preload="metadata"></video>`
-        : `<img src="${src}" alt="${p.name}: как выглядит таблица">`).join('');
+        ? `<video src="${src}" poster="${src.replace('.mp4', '-video.webp')}" muted playsinline loop preload="metadata"></video>`
+        : `<img src="${src}" alt="${p.name}: как выглядит таблица" loading="lazy">`).join('');
       dlg.classList.toggle('one-slide', slides.length < 2);
     }
     openDialog(dlg);
@@ -128,7 +128,8 @@ function initModal() {
   }));
   dlg.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => closeDialog(dlg)));
   dlg.addEventListener('click', e => { if (e.target === dlg) closeDialog(dlg); });
-  dlg.addEventListener('close', () => track && track.querySelectorAll('video').forEach(v => v.pause()));
+  // пауза только если окно и правда закрыто: событие close от прошлого закрытия может прийти уже после нового открытия
+  dlg.addEventListener('close', () => !dlg.open && track && track.querySelectorAll('video').forEach(v => v.pause()));
 }
 
 // Плавное появление блоков при прокрутке, и на ПК, и на телефоне.
