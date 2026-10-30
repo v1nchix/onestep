@@ -54,11 +54,17 @@ try {
 
   if (STAGE === 'all') {
     // 2. недели 3–5 по образцу 1-й недели (копия блока дней: объединения, формат, флажки, условное форматирование)
-    await go('P4:BS16'); await page.keyboard.press('Control+C'); await page.waitForTimeout(1500);
-    for (const top of [62, 91]) { await go(`P${top}`); await page.keyboard.press('Control+V'); await page.waitForTimeout(3000); await okDialog(); }
-    await go('P4:AM16'); await page.keyboard.press('Control+C'); await page.waitForTimeout(1500);
-    await go('P120'); await page.keyboard.press('Control+V'); await page.waitForTimeout(3000); await okDialog();
-    for (const top of [62, 91, 120]) { await go(`P${top + 1}:P${top + 12}`); await page.keyboard.press('Delete'); await page.waitForTimeout(800); } // без чужих 6:00
+    // каждый день отдельно (столбцы времени и дел, без флажка), образец того же дня недели:
+    // пн–ср из 1-й недели, чт–вс из 2-й (там правила зачёркивания ссылаются на свой флажок)
+    const days = [['P', 4], ['X', 4], ['AF', 4], ['AN', 33], ['AV', 33], ['BD', 33], ['BL', 33]];
+    const col = (c, k) => { let n = 0; for (const ch of c) n = n * 26 + ch.charCodeAt(0) - 64; n += k; let s = ''; while (n) { const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = (n - 1 - m) / 26; } return s; };
+    for (const [i, [c, src]] of days.entries()) {
+      await go(`${c}${src}:${col(c, 5)}${src + 12}`); await page.keyboard.press('Control+C'); await page.waitForTimeout(1200);
+      for (const top of i < 3 ? [62, 91, 120] : [62, 91]) {
+        await go(`${c}${top}`); await page.keyboard.press('Control+V'); await page.waitForTimeout(2500); await okDialog();
+      }
+    }
+    for (const top of [62, 91, 120]) { await go(`P${top + 1}`); await page.keyboard.press('Delete'); await page.waitForTimeout(800); } // без 6:00 из образца
     await page.keyboard.press('Escape');
     await go('P60'); await snap('pasted-w3'); await go('P118'); await snap('pasted-w5');
   }
@@ -70,22 +76,20 @@ try {
   await go('P4');
   await page.getByRole('menuitem', { name: 'Данные' }).first().click(); await page.waitForTimeout(800);
   await page.getByRole('menuitem', { name: /проверк/i }).first().click(); await page.waitForTimeout(2500);
-  await page.getByText('P4:P16', { exact: true }).first().click(); await page.waitForTimeout(2000);
+  await page.getByText(/(^|,)P4:P16/).first().click(); await page.waitForTimeout(2000);
   await snap('dv-editor'); await dump('dv-editor');
   fs.writeFileSync('out/dv-inputs.json', JSON.stringify(await page.evaluate(() => [...document.querySelectorAll('input, [role="listbox"], [role="combobox"], [role="radio"], button')].filter(e => e.offsetParent && e.getBoundingClientRect().x > 1200).map(e => ({ tag: e.tagName, role: e.getAttribute('role'), aria: e.getAttribute('aria-label'), val: e.value, text: (e.innerText || '').slice(0, 60), ph: e.getAttribute('placeholder'), cls: e.className.toString().slice(0, 80) }))), null, 1));
   if (STAGE === 'all') {
     // диапазон применения
-    const idx = await page.evaluate(() => [...document.querySelectorAll('input')].findIndex(e => e.value === 'P4:P16'));
-    const ri = page.locator('input').nth(idx);
+    const ri = page.locator('input.waffle-range-selection-input:visible').first();
     await ri.click(); await ri.fill(ranges.join(',')); await page.keyboard.press('Tab'); await page.waitForTimeout(800);
     await snap('dv-range');
     // критерий: список из диапазона
-    await page.getByText('Раскрывающийся список', { exact: true }).first().click(); await page.waitForTimeout(800);
-    await snap('dv-criteria-open');
-    await page.getByRole('option', { name: /из диапазона/ }).first().click(); await page.waitForTimeout(1200);
+    await page.locator('.jfk-select:visible').filter({ hasText: 'Раскрывающийся список' }).first().click(); await page.waitForTimeout(800);
+    await snap('dv-criteria-open'); await dump('dv-criteria-open');
+    await page.getByText(/список \(из диапазона\)/).first().click(); await page.waitForTimeout(1200);
     await snap('dv-criteria');
-    const src = await page.evaluate(() => [...document.querySelectorAll('input')].findIndex(e => e.offsetParent && e.getBoundingClientRect().x > 1200 && e.value === ''));
-    const si = page.locator('input').nth(src);
+    const si = page.locator('input.waffle-range-selection-input:visible').nth(1);
     await si.click(); await si.fill("'Время'!A1:A96"); await page.keyboard.press('Tab'); await page.waitForTimeout(800);
     // расширенные параметры: при другом времени только предупреждение, ввод не запрещаем
     await page.getByText(/Расширенные параметры/).first().click().catch(() => {}); await page.waitForTimeout(800);
