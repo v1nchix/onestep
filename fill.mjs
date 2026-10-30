@@ -17,7 +17,19 @@ for (const key of only) {
     await page.goto(`https://docs.google.com/spreadsheets/d/${id}/edit`, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(8000);
     const go = async cell => { await page.click('#t-name-box'); await page.keyboard.type(cell); await page.keyboard.press('Enter'); await page.waitForTimeout(300); };
-    const tab = async name => { await page.locator('.docs-sheet-tab', { hasText: name }).first().click(); await page.waitForTimeout(2500); await go('A1'); };
+    const tab = async name => {
+      const t = page.locator('.docs-sheet-tab').filter({ hasText: new RegExp(`^\s*${name}\s*$`) }).first();
+      if (await t.count()) await t.click();
+      else { // скрытый лист: открываем через список всех листов (≡), это его показывает
+        await page.locator('.docs-sheet-all-sheets-button').click(); await page.waitForTimeout(800);
+        await page.locator('.goog-menuitem').filter({ hasText: new RegExp(`^\s*${name}\s*$`) }).first().click();
+      }
+      await page.waitForTimeout(2500); await go('A1');
+    };
+    const hide = async name => { // спрятать лист обратно
+      await page.locator('.docs-sheet-tab').filter({ hasText: new RegExp(`^\s*${name}\s*$`) }).first().click({ button: 'right' });
+      await page.waitForTimeout(600); await page.getByText('Скрыть лист', { exact: true }).first().click(); await page.waitForTimeout(1500);
+    };
     let clip, f = 0, rec = true;
     const frame = async (times = 1) => {
       if (!rec) return;
@@ -42,6 +54,7 @@ for (const key of only) {
         await page.getByText(/Развернуть все группы строк/).first().click({ timeout: 5000 }).catch(e => console.log(key, 'нет пункта меню', e.message));
         await page.waitForTimeout(1500); await page.screenshot({ path: `out/${key}-expanded.png`, clip });
       }
+      else if (a === 'hide') await hide(v);
       else if (a === 'tab') { await tab(v); await frame(8); }
       else if (a === 'go') { await go(v); await page.waitForTimeout(800); await frame(4); }
       else if (a === 'hold') { await page.waitForTimeout(1500); await frame(v); }

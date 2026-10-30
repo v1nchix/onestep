@@ -52,7 +52,7 @@ export const TABLES = {
   financeBase: { id: '11h0GZkno7uF84QXfKLPNXE4ldW-qtspB96SqH_WjLS0', steps: [
     ['tab', 'База'], ['rec', 0],
     ...ops.flatMap((o, i) => [[`A${2 + i}`, 'Январь'], [`B${2 + i}`, 10 + i], [`C${2 + i}`, o[0]], [`D${2 + i}`, o[1]], [`E${2 + i}`, o[2]], [`F${2 + i}`, o[3]], [`G${2 + i}`, o[4]]]),
-    ['tab', 'Главная'], ['rec', 1], ['hold', 20],
+    ['tab', 'Главная'], ['hide', 'База'], ['rec', 1], ['hold', 20],
   ]},
   decomp: { id: '1yv2r1WM_P_KkqJtCfHhudRQi4ZTyzDVq84Z1jB56yWg', steps: [
     ['tab', 'Декомпозиция'],
@@ -79,6 +79,6 @@ export const TABLES = {
     ['tab', 'Финмодель 2025'], ['expand', 0],
     ['B4', 6], ['B5', 2], ['B6', 5], ['B7', 2], ['B8', 0], ['B43', 2],
     ...fm.flatMap(([r, name, ...v]) => [...(name ? [[`A${r}`, name]] : []), ...v.map((n, i) => [`${cols[i]}${r}`, n])]),
-    ['go', 'A126'], ['hold', 6], ['go', 'A1'],
+    ['go', 'A117'], ['hold', 6], ['go', 'A1'],
   ]},
 };
