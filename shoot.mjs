@@ -1,1 +1,1 @@
-process.env.ONLY = 'financeBase'; await import('./fill.mjs');
+await import('./shots.mjs');
