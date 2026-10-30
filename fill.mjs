@@ -1,5 +1,5 @@
 // Заполняем демо-таблицы примерами и снимаем процесс покадрово (кадры -> mp4 собираем локально)
-// Шаг: ['C9', 'текст'] вписать | ['tick', 'M9'] галочка | ['tab', 'Лист'] перейти | ['go', 'A116'] прокрутить | ['hold', n] пауза
+// Шаг: ['rec', 0|1] выкл/вкл запись | ['expand', 0] раскрыть все группы строк | ['C9', 'текст'] вписать | ['tick', 'M9'] галочка | ['tab', 'Лист'] перейти | ['go', 'A116'] прокрутить | ['hold', n] пауза
 import { chromium } from 'playwright';
 import fs from 'fs';
 import { TABLES } from './data.mjs';
@@ -18,8 +18,9 @@ for (const key of only) {
     await page.waitForTimeout(8000);
     const go = async cell => { await page.click('#t-name-box'); await page.keyboard.type(cell); await page.keyboard.press('Enter'); await page.waitForTimeout(300); };
     const tab = async name => { await page.locator('.docs-sheet-tab', { hasText: name }).first().click(); await page.waitForTimeout(2500); await go('A1'); };
-    let clip, f = 0;
+    let clip, f = 0, rec = true;
     const frame = async (times = 1) => {
+      if (!rec) return;
       const p = `${dir}/${String(f++).padStart(4, '0')}.png`;
       await page.screenshot({ path: p, clip });
       for (let i = 1; i < times; i++) fs.copyFileSync(p, `${dir}/${String(f++).padStart(4, '0')}.png`);
@@ -31,7 +32,17 @@ for (const key of only) {
     clip = { x: b.x, y: b.y, width: Math.min(b.width, 1440 - b.x), height: Math.min(b.height, 900 - b.y) };
     await frame(10);
     for (const [a, v] of steps.slice(1)) {
-      if (a === 'tab') { await tab(v); await frame(8); }
+      if (a === 'rec') rec = !!v;
+      else if (a === 'expand') {
+        // правый клик по первому «+» группы строк -> «Развернуть все группы строк»
+        const plus = page.locator('.row-gutter-plus, [class*="group-toggle"], [aria-label*="азвернуть"]').first();
+        await plus.click({ button: 'right', timeout: 5000 }).catch(async () => { await page.mouse.click(13, 533, { button: 'right' }); });
+        await page.waitForTimeout(800);
+        await page.screenshot({ path: `out/${key}-menu.png` });
+        await page.getByText(/Развернуть все группы строк/).first().click({ timeout: 5000 }).catch(e => console.log(key, 'нет пункта меню', e.message));
+        await page.waitForTimeout(1500); await page.screenshot({ path: `out/${key}-expanded.png`, clip });
+      }
+      else if (a === 'tab') { await tab(v); await frame(8); }
       else if (a === 'go') { await go(v); await page.waitForTimeout(800); await frame(4); }
       else if (a === 'hold') { await page.waitForTimeout(1500); await frame(v); }
       else if (a === 'tick') { await go(v); await page.keyboard.press('Space'); await page.waitForTimeout(250); await frame(); }

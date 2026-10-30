@@ -48,6 +48,12 @@ export const TABLES = {
     ['C35', 'Коммуналка'], ['D35', '25.01.2026'], ['E35', 6500],
     ['go', 'A1'],
   ]},
+  // итоги на «Главной» считаются из листа «База», который у владельца пополняет скрипт; у анонимного редактора он не срабатывает, поэтому пишем «Базу» сами (без записи видео)
+  financeBase: { id: '11h0GZkno7uF84QXfKLPNXE4ldW-qtspB96SqH_WjLS0', steps: [
+    ['tab', 'База'], ['rec', 0],
+    ...ops.flatMap((o, i) => [[`A${2 + i}`, 'Январь'], [`B${2 + i}`, 10 + i], [`C${2 + i}`, o[0]], [`D${2 + i}`, o[1]], [`E${2 + i}`, o[2]], [`F${2 + i}`, o[3]], [`G${2 + i}`, o[4]]]),
+    ['tab', 'Главная'], ['rec', 1], ['hold', 20],
+  ]},
   decomp: { id: '1yv2r1WM_P_KkqJtCfHhudRQi4ZTyzDVq84Z1jB56yWg', steps: [
     ['tab', 'Декомпозиция'],
     ['E8', 'Кофейня с собой у метро'], ['E9', 'Кофе и выпечка навынос, точка 30 м²'],
@@ -69,8 +75,8 @@ export const TABLES = {
     ['tick', 'AL4'], ['tick', 'AL5'], ['AJ19', '6ч'], ['AJ20', 6], ['AJ21', '😐'],
     ['tick', 'M9'], ['tick', 'M11'], ['go', 'A1'],
   ]},
-  finmodel: { id: '1DR3bq25I-cOjqxveSuW1UwhnLPMZMyHQEukwK6To6IE', steps: [
-    ['tab', 'Финмодель 2025'],
+  finmodel: { id: '1kfi14f1jbpHRQYhri4gkAg2upw3xs_n051ZlUZi7olE', steps: [
+    ['tab', 'Финмодель 2025'], ['expand', 0],
     ['B4', 6], ['B5', 2], ['B6', 5], ['B7', 2], ['B8', 0], ['B43', 2],
     ...fm.flatMap(([r, name, ...v]) => [...(name ? [[`A${r}`, name]] : []), ...v.map((n, i) => [`${cols[i]}${r}`, n])]),
     ['go', 'A126'], ['hold', 6], ['go', 'A1'],
