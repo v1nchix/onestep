@@ -1,43 +1,56 @@
-// Проход 1: скриншоты всех листов каждой демо-таблицы (компьютер 1440 и телефон 375)
-import { chromium, devices } from 'playwright';
+// Пилот: заполняем демо «Трекер привычек» и снимаем процесс покадрово (кадры -> mp4)
+import { chromium } from 'playwright';
 import fs from 'fs';
+import { execSync } from 'child_process';
 
-const SHEETS = {
-  habits:   '1SZAeDLNtjzZsrmgaD6eoPPQV4_HzWCJzhaoGFQmBsig',
-  goals:    '1v9XrbhrngNLV_dN4zxHgPy6Te48OWYmCJ3wdU7oLduU',
-  finance:  '11h0GZkno7uF84QXfKLPNXE4ldW-qtspB96SqH_WjLS0',
-  decomp:   '1yv2r1WM_P_KkqJtCfHhudRQi4ZTyzDVq84Z1jB56yWg',
-  planner:  '1nox0FHr3hQfcnBGF07ukEIGIRLJ09WUpUDAAuAvzp3k',
-  finmodel: '1DR3bq25I-cOjqxveSuW1UwhnLPMZMyHQEukwK6To6IE',
-};
-fs.mkdirSync('out', { recursive: true });
+const ID = '1SZAeDLNtjzZsrmgaD6eoPPQV4_HzWCJzhaoGFQmBsig';
+const TAB = 'OneStep Трекер Привычек';
+const HABITS = ['Выпить 2 литра воды', '10 000 шагов', 'Читать 20 минут', 'Без сладкого', 'Лечь до 23:00'];
+const DAYS = 18; // заполнено «до сегодня»
+// у каждой привычки свой ритм, чтобы прогресс выглядел живым (1 = галочка)
+const MISS = [[6, 13], [3, 10, 16], [5, 11, 12], [2, 8, 9, 15], [4, 14]];
+const COL = d => { let n = 4 + d, s = ''; while (n > 0) { const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - 1) / 26); } return s; }; // день 1 = E
+
+fs.mkdirSync('out/frames', { recursive: true });
 const browser = await chromium.launch();
+const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2, locale: 'ru-RU' });
+const page = await ctx.newPage();
+await page.goto(`https://docs.google.com/spreadsheets/d/${ID}/edit`, { waitUntil: 'domcontentloaded' });
+await page.waitForTimeout(8000);
+await page.locator('.docs-sheet-tab', { hasText: TAB }).first().click();
+await page.waitForTimeout(2000);
+await page.keyboard.press('Control+Shift+F'); // скрыть меню Google
+await page.waitForTimeout(1500);
 
-async function shoot(key, id, mode) {
-  const ctx = await browser.newContext(mode === 'pc'
-    ? { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2, locale: 'ru-RU' }
-    : { ...devices['iPhone 13'], locale: 'ru-RU' });
-  const page = await ctx.newPage();
-  await page.goto(`https://docs.google.com/spreadsheets/d/${id}/edit`, { waitUntil: 'domcontentloaded' });
-  await page.waitForTimeout(8000);
-  const tabs = page.locator('.docs-sheet-tab');
-  const n = await tabs.count();
-  const names = [];
-  if (n === 0) await page.screenshot({ path: `out/${key}-${mode}-0.png` });
-  for (let i = 0; i < n; i++) {
-    const t = tabs.nth(i);
-    names.push((await t.innerText()).trim());
-    await t.click().catch(() => {});
-    await page.waitForTimeout(3000);
-    await page.screenshot({ path: `out/${key}-${mode}-${i}.png` });
-  }
-  fs.writeFileSync(`out/${key}-${mode}-tabs.txt`, names.join('\n'));
-  await ctx.close();
-}
+const box = await page.locator('#waffle-grid-container').boundingBox().catch(() => null);
+const clip = box ? { x: box.x, y: box.y, width: Math.min(box.width, 1440 - box.x), height: Math.min(box.height, 900 - box.y) } : undefined;
+fs.writeFileSync('out/clip.json', JSON.stringify(clip));
+let f = 0;
+const frame = async (times = 1) => { const p = `out/frames/${String(f++).padStart(4, '0')}.png`; await page.screenshot({ path: p, clip }); for (let i = 1; i < times; i++) fs.copyFileSync(p, `out/frames/${String(f++).padStart(4, '0')}.png`); };
+const go = async cell => { await page.click('#t-name-box'); await page.keyboard.type(cell); await page.keyboard.press('Enter'); await page.waitForTimeout(250); };
 
-for (const [key, id] of Object.entries(SHEETS)) {
-  for (const mode of ['pc', 'phone']) {
-    try { await shoot(key, id, mode); } catch (e) { console.log(key, mode, e.message); }
-  }
+await page.screenshot({ path: 'out/before.png', clip });
+await frame(12);
+// 1. Вписываем привычки
+for (let r = 0; r < HABITS.length; r++) {
+  await go(`C${22 + r}`);
+  for (const ch of HABITS[r]) { await page.keyboard.type(ch); if (ch !== ' ') await frame(); }
+  await page.keyboard.press('Enter'); await page.waitForTimeout(400); await frame(3);
 }
+// 2. Ставим галочки день за днём
+for (let d = 1; d <= DAYS; d++) {
+  for (let r = 0; r < HABITS.length; r++) {
+    if (MISS[r].includes(d)) continue;
+    await go(`${COL(d)}${22 + r}`);
+    await page.keyboard.press('Space'); await page.waitForTimeout(150);
+  }
+  await go('A1'); await page.waitForTimeout(700); await frame(2);
+}
+await page.waitForTimeout(2500);
+await frame(30);
+await page.screenshot({ path: 'out/habits-after.png', clip });
+await page.screenshot({ path: 'out/habits-full.png' });
 await browser.close();
+
+execSync(`ffmpeg -y -framerate 12 -i out/frames/%04d.png -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" -c:v libx264 -crf 18 -preset slow -movflags +faststart out/habits.mp4`, { stdio: 'inherit' });
+fs.rmSync('out/frames', { recursive: true });
