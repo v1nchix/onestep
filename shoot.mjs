@@ -13,6 +13,7 @@ const COL = d => { let n = 4 + d, s = ''; while (n > 0) { const m = (n - 1) % 26
 fs.mkdirSync('out/frames', { recursive: true });
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2, locale: 'ru-RU' });
+await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: 'https://docs.google.com' });
 const page = await ctx.newPage();
 await page.goto(`https://docs.google.com/spreadsheets/d/${ID}/edit`, { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(8000);
@@ -29,14 +30,17 @@ const frame = async (times = 1) => { const p = `out/frames/${String(f++).padStar
 const go = async cell => { await page.click('#t-name-box'); await page.keyboard.type(cell); await page.keyboard.press('Enter'); await page.waitForTimeout(250); };
 
 // сброс прошлого прогона: галочки и названия привычек
-await go('E22:AI26'); await page.keyboard.press('Delete'); await page.waitForTimeout(500);
+// чистые флажки берём из строки 27 (там пусто) и вставляем в 22–26
+await go('E27:AI27'); await page.keyboard.press('Control+C'); await page.waitForTimeout(800);
+await go('E22:AI26'); await page.keyboard.press('Control+V'); await page.waitForTimeout(2000);
+await page.screenshot({ path: 'out/reset.png', clip });
 await go('C22:C26'); await page.keyboard.press('Delete'); await page.waitForTimeout(1500);
 await go('A1'); await page.waitForTimeout(1000);
 await page.screenshot({ path: 'out/before.png', clip });
 await frame(12);
 // 1. Вписываем привычки
 for (let r = 0; r < HABITS.length; r++) {
-  await go(`C${22 + r}`);
+  await go(`C${22 + r}`); await page.keyboard.press('F2'); await page.waitForTimeout(300);
   for (const ch of HABITS[r]) { await page.keyboard.type(ch); if (ch !== ' ') await frame(); }
   await page.keyboard.press('Enter'); await page.waitForTimeout(400); await frame(3);
 }
