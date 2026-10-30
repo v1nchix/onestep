@@ -20,10 +20,11 @@ for (const key of only) {
     const tab = async name => {
       const t = page.locator('.docs-sheet-tab').filter({ hasText: new RegExp(`${name}(?!_)`) }).first();
       if (await t.count()) await t.click();
-      else { // скрытый лист: открываем через список всех листов (≡), это его показывает
-        await page.getByRole('button', { name: /Все листы|All Sheets/ }).first().click(); await page.waitForTimeout(800);
-        await page.screenshot({ path: `out/${key}-allsheets.png` });
-        await page.getByRole('menuitem', { name: new RegExp(`^\s*${name}\s*$`) }).first().click();
+      else { // скрытый лист: меню «Вид» -> «Скрытые листы» -> лист (меню видно до Ctrl+Shift+F)
+        await page.locator('#docs-view-menu').click(); await page.waitForTimeout(700);
+        await page.getByRole('menuitem', { name: /Скрытые листы|Hidden sheets/ }).first().hover(); await page.waitForTimeout(700);
+        await page.screenshot({ path: `out/${key}-hiddenmenu.png` });
+        await page.getByRole('menuitem', { name: new RegExp(`^\s*${name}(?!_)`) }).first().click();
       }
       await page.waitForTimeout(2500); await go('A1');
     };
