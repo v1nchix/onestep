@@ -1,4 +1,5 @@
-import urllib.request, openpyxl
+import urllib.request, openpyxl, os
+os.makedirs('out', exist_ok=True)
 urllib.request.urlretrieve('https://docs.google.com/spreadsheets/d/11h0GZkno7uF84QXfKLPNXE4ldW-qtspB96SqH_WjLS0/export?format=xlsx', 'out/fin.xlsx')
 wb = openpyxl.load_workbook('out/fin.xlsx')
 with open('out/base.txt', 'w', encoding='utf-8') as f:
