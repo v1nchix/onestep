@@ -18,16 +18,17 @@ for (const key of only) {
     await page.waitForTimeout(8000);
     const go = async cell => { await page.click('#t-name-box'); await page.keyboard.type(cell); await page.keyboard.press('Enter'); await page.waitForTimeout(300); };
     const tab = async name => {
-      const t = page.locator('.docs-sheet-tab').filter({ hasText: new RegExp(`^\s*${name}\s*$`) }).first();
+      const t = page.locator('.docs-sheet-tab').filter({ hasText: new RegExp(`${name}(?!_)`) }).first();
       if (await t.count()) await t.click();
       else { // скрытый лист: открываем через список всех листов (≡), это его показывает
-        await page.locator('.docs-sheet-all-sheets-button').click(); await page.waitForTimeout(800);
-        await page.locator('.goog-menuitem').filter({ hasText: new RegExp(`^\s*${name}\s*$`) }).first().click();
+        await page.getByRole('button', { name: /Все листы|All Sheets/ }).first().click(); await page.waitForTimeout(800);
+        await page.screenshot({ path: `out/${key}-allsheets.png` });
+        await page.getByRole('menuitem', { name: new RegExp(`^\s*${name}\s*$`) }).first().click();
       }
       await page.waitForTimeout(2500); await go('A1');
     };
     const hide = async name => { // спрятать лист обратно
-      await page.locator('.docs-sheet-tab').filter({ hasText: new RegExp(`^\s*${name}\s*$`) }).first().click({ button: 'right' });
+      await page.locator('.docs-sheet-tab').filter({ hasText: new RegExp(`${name}(?!_)`) }).first().click({ button: 'right' });
       await page.waitForTimeout(600); await page.getByText('Скрыть лист', { exact: true }).first().click(); await page.waitForTimeout(1500);
     };
     let clip, f = 0, rec = true;
