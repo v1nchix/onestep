@@ -57,16 +57,31 @@ const DETAILS = {
 };
 
 // Открыть/закрыть окно. Если браузер не умеет <dialog> (старый встроенный браузер Телеграма), показываем окно сами.
+// На телефонах и планшетах окно всегда показываем сами: системные окна браузеров там ведут себя по-разному.
+const touchDevice = () => matchMedia('(hover: none), (pointer: coarse)').matches;
 function openDialog(d) {
-  if (typeof d.showModal === 'function') { try { d.showModal(); return; } catch (e) {} }
+  if (!touchDevice() && typeof d.showModal === 'function') { try { d.showModal(); return; } catch (e) {} }
+  let bd = document.getElementById('dlgBackdrop');
+  if (!bd) {
+    bd = document.createElement('div'); bd.id = 'dlgBackdrop'; bd.className = 'dlg-bd';
+    bd.addEventListener('click', () => document.querySelectorAll('.dlg-fb').forEach(closeDialog));
+    document.body.append(bd);
+  }
+  bd.hidden = false;
   d.setAttribute('open', ''); d.classList.add('dlg-fb'); document.documentElement.classList.add('dlg-lock');
+  d.scrollTop = 0;
 }
 function closeDialog(d) {
   if (d.classList.contains('dlg-fb')) {
-    d.removeAttribute('open'); d.classList.remove('dlg-fb'); document.documentElement.classList.remove('dlg-lock');
+    d.removeAttribute('open'); d.classList.remove('dlg-fb');
+    if (!document.querySelector('.dlg-fb')) {
+      document.documentElement.classList.remove('dlg-lock');
+      const bd = document.getElementById('dlgBackdrop'); if (bd) bd.hidden = true;
+    }
     d.dispatchEvent(new Event('close'));
   } else if (typeof d.close === 'function') d.close();
 }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.dlg-fb').forEach(closeDialog); });
 const isOpen = d => d && d.hasAttribute('open');
 
 const rub = n => n.toLocaleString('ru-RU') + ' ₽';
