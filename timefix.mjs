@@ -23,7 +23,7 @@ try {
   await snap('open');
 
   // 1. лист «Время» со списком 0:00 … 23:45
-  if (!(await page.locator('.docs-sheet-tab').filter({ hasText: /^Время$/ }).count())) {
+  if (!(await page.locator('.docs-sheet-tab').filter({ hasText: 'Время' }).count())) {
     await page.locator('.docs-sheet-add-button').click(); await page.waitForTimeout(2500);
     await page.locator('.docs-sheet-active-tab').dblclick(); await page.waitForTimeout(600);
     await page.keyboard.press('Control+A'); await page.keyboard.type('Время'); await page.keyboard.press('Enter'); await page.waitForTimeout(1500);
@@ -81,7 +81,7 @@ try {
     await page.getByRole('button', { name: 'Готово' }).first().click(); await page.waitForTimeout(2500);
     await snap('dv-done');
     // 4. спрятать лист «Время»
-    await page.locator('.docs-sheet-tab').filter({ hasText: /^Время$/ }).first().click({ button: 'right' }); await page.waitForTimeout(700);
+    await page.locator('.docs-sheet-tab').filter({ hasText: 'Время' }).first().click({ button: 'right' }); await page.waitForTimeout(700);
     await page.getByText('Скрыть лист', { exact: true }).first().click(); await page.waitForTimeout(2500);
     await go('P60'); await page.keyboard.press('Escape'); await snap('final');
   }
