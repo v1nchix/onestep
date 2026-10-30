@@ -1,7 +1,6 @@
 // Пилот: заполняем демо «Трекер привычек» и снимаем процесс покадрово (кадры -> mp4)
 import { chromium } from 'playwright';
 import fs from 'fs';
-import { execSync } from 'child_process';
 
 const ID = '1SZAeDLNtjzZsrmgaD6eoPPQV4_HzWCJzhaoGFQmBsig';
 const TAB = 'OneStep Трекер Привычек';
@@ -29,6 +28,10 @@ let f = 0;
 const frame = async (times = 1) => { const p = `out/frames/${String(f++).padStart(4, '0')}.png`; await page.screenshot({ path: p, clip }); for (let i = 1; i < times; i++) fs.copyFileSync(p, `out/frames/${String(f++).padStart(4, '0')}.png`); };
 const go = async cell => { await page.click('#t-name-box'); await page.keyboard.type(cell); await page.keyboard.press('Enter'); await page.waitForTimeout(250); };
 
+// сброс прошлого прогона: галочки и названия привычек
+await go('E22:AI26'); await page.keyboard.press('Delete'); await page.waitForTimeout(500);
+await go('C22:C26'); await page.keyboard.press('Delete'); await page.waitForTimeout(1500);
+await go('A1'); await page.waitForTimeout(1000);
 await page.screenshot({ path: 'out/before.png', clip });
 await frame(12);
 // 1. Вписываем привычки
@@ -52,5 +55,3 @@ await page.screenshot({ path: 'out/habits-after.png', clip });
 await page.screenshot({ path: 'out/habits-full.png' });
 await browser.close();
 
-execSync(`ffmpeg -y -framerate 12 -i out/frames/%04d.png -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p" -c:v libx264 -crf 18 -preset slow -movflags +faststart out/habits.mp4`, { stdio: 'inherit' });
-fs.rmSync('out/frames', { recursive: true });
