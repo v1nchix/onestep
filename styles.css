@@ -881,7 +881,9 @@ html:not(.js) .stairs4 i:nth-child(1){height:30px}html:not(.js) .stairs4 i:nth-c
 .dlg-bd[hidden]{display:none}
 dialog.dlg-fb{position:fixed!important;z-index:100;inset:auto 0 0 0!important;margin:0 auto!important;box-shadow:none!important;max-height:92vh;max-height:92dvh;overflow:auto;-webkit-overflow-scrolling:touch}
 dialog.pm.dlg-fb{display:flex;overflow:hidden}
-.pm-grid{min-height:0}
+.pm-grid{min-height:0;flex:1 1 auto}
 dialog.pm{max-height:calc(100vh - 12px)}
 @supports (height:100dvh){dialog.pm{max-height:calc(100dvh - 12px)}}
 @media (min-width:861px){dialog.dlg-fb{inset:0!important;margin:auto!important}}
+dialog.pm.dlg-fb{height:calc(100vh - 12px)}
+@supports (height:100dvh){dialog.pm.dlg-fb{height:calc(100dvh - 12px)}}
