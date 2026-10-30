@@ -1,1 +1,1 @@
-process.env.ONLY = 'habits,goals'; await import('./shots.mjs');
+await import('./shots.mjs');
