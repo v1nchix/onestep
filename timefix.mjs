@@ -39,6 +39,19 @@ try {
     if (await ok.count()) { await snap('dialog'); await ok.first().click(); await page.waitForTimeout(800); }
   };
 
+  const menu = async (top, ...items) => {
+    await page.getByRole('menuitem', { name: top }).first().click(); await page.waitForTimeout(700);
+    for (const it of items) { const m = page.getByRole('menuitem', { name: it }).first(); await m.hover(); await page.waitForTimeout(600); if (it === items.at(-1)) await m.click(); }
+    await page.waitForTimeout(1500);
+  };
+  if (STAGE === 'prot') {
+    await menu('Данные', /Защитить листы/); await snap('prot'); await dump('prot');
+    await page.keyboard.press('Escape');
+    await go('P62:U74'); await menu('Формат', /Объединить ячейки/, /Отменить объединение/); await okDialog(); await snap('unmerge');
+    await go('P62:Q74'); await menu('Формат', /Объединить ячейки/, /по горизонтали/); await okDialog(); await snap('merge-pq');
+    await go('R62:U74'); await menu('Формат', /Объединить ячейки/, /по горизонтали/); await okDialog(); await go('P60'); await snap('merge-ru');
+  }
+
   if (STAGE === 'all') {
     // 2. недели 3–5 по образцу 1-й недели (копия блока дней: объединения, формат, флажки, условное форматирование)
     await go('P4:BS16'); await page.keyboard.press('Control+C'); await page.waitForTimeout(1500);
