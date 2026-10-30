@@ -12,5 +12,6 @@ jobs:
         with: { node-version: 20 }
       - run: npm i playwright@1.47.2 && npx playwright install --with-deps chromium
       - run: node shoot.mjs
+        env: { SHEET_ID: 1KkRlG4sq-CGO7d6FfoF_YCLZhYYH9Mtz5m1BkB1NTxE, STAGE: recon }
       - uses: actions/upload-artifact@v4
         with: { name: out, path: out }

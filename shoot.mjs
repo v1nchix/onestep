@@ -1,1 +1,1 @@
-await import('./shots.mjs');
+await import('./timefix.mjs');
